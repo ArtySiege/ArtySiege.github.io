@@ -1,4 +1,5 @@
 /node_modules/
 /public/img/CardArtRedraw/
+/public/build
 
 .DS_Store

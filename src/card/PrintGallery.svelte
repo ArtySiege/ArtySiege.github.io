@@ -59,6 +59,7 @@
     display: grid;
     grid-template-columns: 63mm 63mm 63mm;
     grid-auto-rows: 88mm;
+    page-break-before: always;
   }
 
   @media screen {

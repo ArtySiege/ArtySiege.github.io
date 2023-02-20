@@ -6,6 +6,7 @@
   import { CardDetails, CardFeatureType, FeatureTypeFilterOptions } from './interface'
 
   let displayFilter: CardFeatureType | 'All' = 'All'
+  let search = ''
 
   let cards = []
   const getCards = async () => {
@@ -42,18 +43,24 @@
   const setDisplayFilter = (filter: string) => {
     displayFilter = filter as CardFeatureType | 'All'
   }
-  $: filteredCards = cards.filter((c) => c.img && (displayFilter === 'All' || c.featureType === displayFilter))
+  $: filteredCards = cards.filter(
+    (c) =>
+      c.img &&
+      (displayFilter === 'All' || c.featureType === displayFilter) &&
+      (search === '' || c.artist.toLowerCase().includes(search.toLowerCase()))
+  )
 
   let scrollToIndex
 </script>
 
 <main>
-  <h1>Arty Siege</h1>
   <h2>Card Gallery</h2>
   {#await getCards()}
     loading...
   {:then cards}
     <div class="filters">
+      <h3>Search by artist:</h3>
+      <input bind:value={search} />
       <h3>Filter by card type:</h3>
       <div class="featureTypeButton">
         <button
@@ -108,7 +115,7 @@
       </div>
     </div>
     <div>
-      {#key displayFilter}
+      {#key (displayFilter, search)}
         <Grid
           width="100%"
           height={window.outerHeight}
@@ -120,7 +127,7 @@
           <div slot="placeholder" let:style {style}>
             <img
               class="card_back"
-              src="./img/CardArtRedraw/CardBack.png"
+              src="./img/UI/CardBack.webp"
               alt="The back of an Arty Siege card, showing the logo and splatters"
             />
           </div>

@@ -27,7 +27,7 @@
   }
 
   .holo {
-    --space: 4%;
+    --space: 3%;
 
     background-image: url('../img/UI/CardBackground_SplattersGrid.webp'),
       repeating-linear-gradient(
