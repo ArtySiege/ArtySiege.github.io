@@ -3,14 +3,14 @@ No.,Name,Title Line 1,Title Line 2,Special Cost,Special Cost X,Rarity,Season,Squ
 2,Sploosh-o-matic,Sploosh-o-matic,,4,SSSS,Common,1,9,,,__XS_X,__XXXX,___X_X,,,,,,,,2,162,Shooter
 3,Splattershot Jr.,Splattershot Jr.,,2,SS,Common,1,4,,,,__XSX,__X,,,,Alecat,./CardArtRedraw/003_Alecat.png,http://ale.chenonetta.com,Website,3,162,Shooter
 4,Splash-o-matic,Splash-o-matic,,3,SSS,Common,1,7,,,____X,__XXXS,___XX,,,,,,,,4,162,Shooter
-5,Aerospray MG,Aerospray MG,,3,SSS,Common,1,7,,,__XS,__XXXX,___X,,,,skylar,./CardArtRedraw/005_skylarraeart.webp,,,5,162,Shooter
+5,Aerospray MG,Aerospray MG,,3,SSS,Common,1,7,,,__XS,__XXXX,___X,,,,skylar,./CardArtRedraw/005_skylarraeart.png,,,5,162,Shooter
 6,Splattershot,Splattershot,,3,SSS,Common,1,8,,,__XXS,__XXXX,__X,,,,,,,,6,162,Shooter
 7,.52 Gal,.52 Gal,,3,SSS,Common,1,7,,,__XXXS,___XX,__X,,,,,,,,7,162,Shooter
 8,N-ZAP '85,N-ZAP '85,,2,SS,Common,1,5,,,__XXSX,__X,,,,,,,,,8,162,Shooter
 9,Splattershot Pro,Splattershot,Pro,4,SSSS,Common,1,9,,,____XS,_XXXXXX,___X,,,,,,,,9,162,Shooter
 10,.96 Gal,.96 Gal,,4,SSSS,Common,1,10,,,_XXXXXS,__XXX,_X,,,,,,,,10,162,Shooter
 11,Jet Squelcher,Jet Squelcher,,4,SSSS,Common,1,10,,,_XSXXXX,_X,_XXX,,,,,,,,11,162,Shooter
-12,Luna Blaster,Luna Blaster,,3,SSS,Common,1,7,,,_____S,__XXX,___XX,___X,,,,,,,12,162,Blaster
+12,Luna Blaster,Luna Blaster,,3,SSS,Common,1,7,,,_____S,__XXX,___XX,___X,,,Lulu,./CardArtRedraw/012_Lulu.png,,,12,162,Blaster
 13,Blaster,Blaster,,3,SSS,Common,1,8,,,_X__XS,__XXXX,__X,,,,,,,,13,162,Blaster
 14,Range Blaster,Range Blaster,,4,SSSS,Common,1,9,,,_X___XS,__XXXXX,__X,,,,,,,,14,162,Blaster
 15,Clash Blaster,Clash Blaster,,3,SSS,Common,1,8,,,___XXX,__XXXS,__X,,,,,,,,15,162,Blaster
@@ -29,7 +29,7 @@ No.,Name,Title Line 1,Title Line 2,Special Cost,Special Cost X,Rarity,Season,Squ
 28,Splat Charger,Splat Charger,,3,SSS,Common,1,8,,,,XXXXXXX,__S,,,,,,,,28,162,Charger
 29,Splatterscope,Splatterscope,,4,SSSS,Common,1,10,,,__XS,XXXXXXX,__X,,,,saturnsalien,./CardArtRedraw/029_saturnsalien.png,,,29,162,Charger
 30,E-liter 4K,E-liter 4K,,4,SSSS,Common,1,11,,,XXXXXXX,XXX__S,,,,,,,,,30,162,Charger
-31,E-liter 4K Scope,E-liter 4K Scope,,5,SSSSS,Common,1,13,,,___XS,XXXXXXX,XXX__X,,,,,,,,31,162,Charger
+31,E-liter 4K Scope,E-liter 4K Scope,,5,SSSSS,Common,1,13,,,___XS,XXXXXXX,XXX__X,,,,Tukotara,./CardArtRedraw/031_Tukotara.png,,,31,162,Charger
 32,Bamboozler 14 Mk I,Bamboozler,14 Mk I,3,SSS,Common,1,7,,,,_X___X,_XSXXX,,,,,,,,32,162,Charger
 33,Goo Tuber,Goo Tuber,,4,SSSS,Common,1,11,,,_XXXXXX,_XXS_X,____X,,,,,,,,33,162,Charger
 34,Slosher,Slosher,,3,SSS,Common,1,6,,,__X,___SX,__XXX,,,,,,,,34,162,Bucket
@@ -46,7 +46,7 @@ No.,Name,Title Line 1,Title Line 2,Special Cost,Special Cost X,Rarity,Season,Squ
 45,Splat Dualies,Splat Dualies,,3,SSS,Common,1,8,,,__XXXX,__XS,_XX,,,,,,,,45,162,Dualie
 46,Glooga Dualies,Glooga Dualies,,4,SSSS,Common,1,9,,,____X,__XXXS,___XX,___XX,,,,,,,46,162,Dualie
 47,Dualie Squelchers,Dualie,Squelchers,4,SSSS,Common,1,10,,,_XX,_XXXXX,_S,_XX,,,,,,,47,162,Dualie
-48,Dark Tetra Dualies,Dark Tetra,Dualies,3,SSS,Common,1,8,,,___XSX,__X_XX,___XX,,,,,,,,48,162,Dualie
+48,Dark Tetra Dualies,Dark Tetra,Dualies,3,SSS,Common,1,8,,,___XSX,__X_XX,___XX,,,,Lulu,./CardArtRedraw/048_Lulu.png,,,48,162,Dualie
 49,Splat Brella,Splat Brella,,4,SSSS,Common,1,11,,___X,___XX,__XSXX,_X_XX,___X,,,,,,,49,162,Brella
 50,Tenta Brella,Tenta Brella,,5,SSSSS,Common,1,12,,___XX,____XX,___XSX,__X_XX,___XX,,,,,,,50,162,Brella
 51,Undercover Brella,Undercover,Brella,3,SSS,Common,1,8,,___X,____X,__XX_S,__X_X,___X,,,Pelman D.,./CardArtRedraw/051_pelmandna.png,,,51,162,Brella
@@ -81,13 +81,13 @@ No.,Name,Title Line 1,Title Line 2,Special Cost,Special Cost X,Rarity,Season,Squ
 80,Ultra Stamp,Ultra Stamp,,3,SSS,Rare,1,12,,,____XX,_XXXXXX,___XXXX,,,,,,,,80,162,Special
 81,Crab Tank,Crab Tank,,3,SSS,Rare,1,12,,__X__X,___XX,__X__X,_X____X,_XX__XX,,,,,,,81,162,Special
 82,Reefslider,Reefslider,,3,SSS,Rare,1,12,,,___X,__XXX_X,_XXXXXX,___X,,,,,,,82,162,Special
-83,Triple Inkstrike,Triple Inkstrike,,3,SSS,Rare,1,12,,,___XX,___XX,_XX__XX,_XX__XX,,,,,,,83,162,Special
-84,Tacticooler,Tacticooler,,3,SSS,Rare,1,12,,__XXX,__X_X,_X_X_X,__XXX,___X,,,,,,,84,162,Special
+83,Triple Inkstrike,Triple Inkstrike,,3,SSS,Rare,1,12,,,___XX,___XX,_XX__XX,_XX__XX,,,Stup-Jam,./CardArtRedraw/083_Stup-Jam.png,,,83,162,Special
+84,Tacticooler,Tacticooler,,3,SSS,Rare,1,12,,__XXX,__X_X,_X_X_X,__XXX,___X,,,Tukotara,./CardArtRedraw/084_Tukotara.png,,,84,162,Special
 85,Sheldon,Sheldon,,5,SSSSS,Rare,1,13,,,__XXX,_XXXXX,_X_X_X,__S_X,,,Pelman D.,./CardArtRedraw/085_pelmandna.png,,,85,162,NPC
 86,Gnarly Eddy,Gnarly Eddy,,5,SSSSS,Rare,1,15,,__XXS,_X_X_X,_XXXXX,_X_X,__XX,,,,,,,86,162,NPC
 87,Jel La Fleur,Jel La Fleur,,5,SSSSS,Rare,1,12,,___X,__XXX,__XXX,_X_S_X,__X_X,,,Ashen,./CardArtRedraw/087_Ashenberry.png,,,87,162,NPC
 88,Mr. Coco,Mr. Coco,,5,SSSSS,Rare,1,15,,___X,__XXX,__XXX,_XXXXX,_S_X_X,,,,,,,88,162,NPC
-89,Harmony,Harmony,,5,SSSSS,Rare,1,15,,__XXX,__XXXX,___XS,__X__X,__X__X,_X____X,,Spintintin,./CardArtRedraw/089_spintintin.png,,,89,162,NPC
+89,Harmony,Harmony,,5,SSSSS,Rare,1,15,,__XXX,__XXXX,___XS,__X__X,__X__X,_X____X,,spintinin,./CardArtRedraw/089_spintintin.png,,,89,162,NPC
 90,Murch,Murch,,5,SSSSS,Rare,1,12,,__X_X,_X_X_X,__X_X,_X_S_X,__X_X,,,,,,,90,162,NPC
 91,Mr. Grizz,Mr. Grizz,,5,SSSSS,Rare,1,14,,___X,__S,_X_X,_XXX,_XXXXX,___X_X,,,,,,91,162,NPC
 92,Marigold,Marigold,,5,SSSSS,Rare,1,15,,___X,__XXX,_X_X_X,_XXSXX,__XXX,,,,,,,92,162,NPC
@@ -124,7 +124,7 @@ No.,Name,Title Line 1,Title Line 2,Special Cost,Special Cost X,Rarity,Season,Squ
 123,Octohopper,Octohopper,,4,SSSS,Common,1,10,,___X,___SX,__XXX,___XX,___X,___X,,,,,,123,162,Octarian Army
 124,Octocopter,Octocopter,,2,SS,Common,1,4,,,__X_X,___S,___X,,,,,,,,124,162,Octarian Army
 125,Octobomber,Octobomber,,5,SSSSS,Common,1,13,,,___X,__XXX,_XXXXX,__XXX_S,,,,,,,125,162,Octarian Army
-126,Octodisco,Octodisco,,5,SSSSS,Common,1,12,,___X,_XXXXX,_X___X,_S___X,_X___X,,,,,,,126,162,Octarian Army
+126,Octodisco,Octodisco,,5,SSSSS,Common,1,12,,___X,_XXXXX,_X___X,_S___X,_X___X,,,Stup-Jam,./CardArtRedraw/126_Stup-Jam.png,,,126,162,Octarian Army
 127,Octopod,Octopod,,1,S,Common,1,2,,,,___SX,,,,,,,,,127,162,Octarian Army
 128,Oversized Octopod,Oversized,Octopod,4,SSSS,Rare,1,11,,,__XXXX,__XXXX,___S,__X_X,,,,,,,128,162,Octarian Army
 129,Tentakook,Tentakook,,3,SSS,Common,1,7,,,_____X,____XX,__XS,__XX,,,,,,,129,162,Octarian Army
