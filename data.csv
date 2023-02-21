@@ -26,7 +26,7 @@ No.,Name,Title Line 1,Title Line 2,Special Cost,Special Cost X,Rarity,Season,Squ
 25,Inkbrush,Inkbrush,,3,SSS,Common,1,7,,____SX,____XX,___X,__X,_X,,,,,,,25,162,Brush
 26,Octobrush,Octobrush,,4,SSSS,Common,1,9,,_____X,____SXX,____XX,___X,__X,_X,,,,,,26,162,Brush
 27,Classic Squiffer,Classic Squiffer,,3,SSS,Common,1,8,,,,_XXXXXX,_XS,,,,kinnju,./CardArtRedraw/027_kinnju_CMYK.png,,,27,162,Charger
-28,Splat Charger,Splat Charger,,3,SSS,Common,1,8,,,,XXXXXXX,__S,,,,,,,,28,162,Charger
+28,Splat Charger,Splat Charger,,3,SSS,Common,1,8,,,,XXXXXXX,__S,,,,calatarii ,./CardArtRedraw/028_calatarii_RGB.png,,,28,162,Charger
 29,Splatterscope,Splatterscope,,4,SSSS,Common,1,10,,,__XS,XXXXXXX,__X,,,,saturnsalien,./CardArtRedraw/029_saturnsalien.png,,,29,162,Charger
 30,E-liter 4K,E-liter 4K,,4,SSSS,Common,1,11,,,XXXXXXX,XXX__S,,,,,,,,,30,162,Charger
 31,E-liter 4K Scope,E-liter 4K Scope,,5,SSSSS,Common,1,13,,,___XS,XXXXXXX,XXX__X,,,,Tukotara,./CardArtRedraw/031_Tukotara.png,,,31,162,Charger
@@ -95,7 +95,7 @@ No.,Name,Title Line 1,Title Line 2,Special Cost,Special Cost X,Rarity,Season,Squ
 94,Cuttlefish,Cuttlefish,,5,SSSSS,Fresh,1,14,,___X,__XXX,___X,__XXX,__XXX,_X_S_X,,,,,,94,162,NPC
 95,Captain,Captain,,6,SSSSSS,Fresh,1,16,,_XXX,_XXXX,XXSX_X,__X___X,___X,____X,,skylar,./CardArtRedraw/095_skylarraeart.png,,,95,162,NPC
 96,Callie,Callie,,5,SSSSS,Fresh,1,15,,_XX,_XXXX,__XXS,___X_X,_X_X,__X_X,,,,,,96,162,NPC
-97,Marie,Marie,,5,SSSSS,Fresh,1,15,,____XX,__XXXX,__SXX,_X_X,___X_X,__X_X,,,,,,97,162,NPC
+97,Marie,Marie,,5,SSSSS,Fresh,1,15,,____XX,__XXXX,__SXX,_X_X,___X_X,__X_X,,calatarii ,./CardArtRedraw/097_calatarii_RGB.png,,,97,162,NPC
 98,Shiver,Shiver,,6,SSSSSS,Fresh,1,17,___X,___X,__XXX,_S_X_X,_XX_XX,__XXX,__X_X,,,,,,98,162,NPC
 99,Frye,Frye,,6,SSSSSS,Fresh,1,17,__X_X,__XXX,_X_X_S,_XX_XX,__X_X,__X_X,___X,,,,,,99,162,NPC
 100,Big Man,Big Man,,6,SSSSSS,Fresh,1,17,,__X__X,_X_XXX,__XXX,__XXX_X,_XX__S,____X,,,,,,100,162,NPC
