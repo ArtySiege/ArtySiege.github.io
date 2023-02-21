@@ -56,7 +56,7 @@ No.,Name,Title Line 1,Title Line 2,Special Cost,Special Cost X,Rarity,Season,Squ
 55,Splatana Wiper,Splatana,Wiper,2,SS,Common,1,5,,___S,___X,___X,___X,___X,,,Ashen,./CardArtRedraw/055_Ashenberry.png,,,55,162,Splatana
 56,Splat Bomb,Splat Bomb,,1,S,Common,1,3,,,,____S,___XX,,,,,,,,56,162,Sub
 57,Suction Bomb,Suction Bomb,,1,S,Common,1,3,,,___X,___X,___S,,,,,,,,57,162,Sub
-58,Burst Bomb,Burst Bomb,,1,S,Common,1,1,,,,___S,,,,,,,,,58,162,Sub
+58,Burst Bomb,Burst Bomb,,1,S,Common,1,1,,,,___S,,,,,zippy,./CardArtRedraw/58_zippy.png,,,58,162,Sub
 59,Sprinkler,Sprinkler,,1,S,Common,1,3,,,,__X_X,___S,,,,,,,,59,162,Sub
 60,Splash Wall,Splash Wall,,2,SS,Common,1,5,,,__XXX,___S,___X,,,,,,,,60,162,Sub
 61,Fizzy Bomb,Fizzy Bomb,,1,S,Common,1,3,,,___X,___S,___X,,,,,,,,61,162,Sub
@@ -149,7 +149,7 @@ No.,Name,Title Line 1,Title Line 2,Special Cost,Special Cost X,Rarity,Season,Squ
 148,Maws,Maws,,5,SSSSS,Common,1,12,,,__X__X,_XX__XX,_XXXXSX,,,,,,,,148,162,Salmonid
 149,Drizzler,Drizzler,,5,SSSSS,Common,1,12,,,___X,__XXX,_XXXXX,_X_S_X,,,,,,,149,162,Salmonid
 150,Flyfish,Flyfish,,5,SSSSS,Common,1,13,,,_XX_XX,_XXSXX,_XX_XX,,,,,,,,150,162,Salmonid
-151,Fish Stick,Fish Stick,,4,SSSS,Common,1,9,,_XX_XX,___X,___X,___X,___S,___X,,,,,,151,162,Salmonid
+151,Fish Stick,Fish Stick,,4,SSSS,Common,1,9,,_XX_XX,___X,___X,___X,___S,___X,,zippy,./CardArtRedraw/151_zippy.png,,,151,162,Salmonid
 152,Flipper-Flopper,Flipper-Flopper,,5,SSSSS,Common,1,12,,___X_X,____X,__XXX,___XXX,___SX,____X,,,,,,152,162,Salmonid
 153,Slammin' Lid,Slammin' Lid,,3,SSS,Common,1,6,,,,___S,_XXXXX,,,,CaptDedEyes,./CardArtRedraw/153_CaptDedEyes_RGB.png,,,153,162,Salmonid
 154,Big Shot,Big Shot,,5,SSSSS,Common,1,13,,,____X,___XXX,_SX_XX,_XX_XXX,,,,,,,154,162,Salmonid
