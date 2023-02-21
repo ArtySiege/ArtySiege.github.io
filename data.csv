@@ -80,7 +80,7 @@ No.,Name,Title Line 1,Title Line 2,Special Cost,Special Cost X,Rarity,Season,Squ
 79,Inkjet,Inkjet,,3,SSS,Rare,1,12,,,_XXXXXX,_X_XX_X,___XX,,,,,,,,79,162,Special
 80,Ultra Stamp,Ultra Stamp,,3,SSS,Rare,1,12,,,____XX,_XXXXXX,___XXXX,,,,,,,,80,162,Special
 81,Crab Tank,Crab Tank,,3,SSS,Rare,1,12,,__X__X,___XX,__X__X,_X____X,_XX__XX,,,,,,,81,162,Special
-82,Reefslider,Reefslider,,3,SSS,Rare,1,12,,,___X,__XXX_X,_XXXXXX,___X,,,,,,,82,162,Special
+82,Reefslider,Reefslider,,3,SSS,Rare,1,12,,,___X,__XXX_X,_XXXXXX,___X,,,SetiSpaghetti,./CardArtRedraw/082_SetiSpaghetti.png,,,82,162,Special
 83,Triple Inkstrike,Triple Inkstrike,,3,SSS,Rare,1,12,,,___XX,___XX,_XX__XX,_XX__XX,,,Stup-Jam,./CardArtRedraw/083_Stup-Jam.png,,,83,162,Special
 84,Tacticooler,Tacticooler,,3,SSS,Rare,1,12,,__XXX,__X_X,_X_X_X,__XXX,___X,,,Tukotara,./CardArtRedraw/084_Tukotara.png,,,84,162,Special
 85,Sheldon,Sheldon,,5,SSSSS,Rare,1,13,,,__XXX,_XXXXX,_X_X_X,__S_X,,,Pelman D.,./CardArtRedraw/085_pelmandna.png,,,85,162,NPC
