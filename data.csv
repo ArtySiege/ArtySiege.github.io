@@ -15,7 +15,7 @@ No.,Name,Title Line 1,Title Line 2,Special Cost,Special Cost X,Rarity,Season,Squ
 14,Range Blaster,Range Blaster,,4,SSSS,Common,1,9,,,_X___XS,__XXXXX,__X,,,,,,,,14,162,Blaster
 15,Clash Blaster,Clash Blaster,,3,SSS,Common,1,8,,,___XXX,__XXXS,__X,,,,,,,,15,162,Blaster
 16,Rapid Blaster,Rapid Blaster,,3,SSS,Common,1,8,,,__XXSX,__XXX,__X,,,,,,,,16,162,Blaster
-17,Rapid Blaster Pro,Rapid Blaster,Pro,4,SSSS,Common,1,9,,,_XXXXX,_XXS,_X,,,,,,,,17,162,Blaster
+17,Rapid Blaster Pro,Rapid Blaster,Pro,4,SSSS,Common,1,9,,,_XXXXX,_XXS,_X,,,,kiitenclaws,017_kiitenclaws,,,17,162,Blaster
 18,L-3 Nozzlenose,L-3 Nozzlenose,,3,SSS,Common,1,7,,,__XSXX,__XX,__X,,,,,,,,18,162,Shooter
 19,H-3 Nozzlenose,H-3 Nozzlenose,,3,SSS,Common,1,8,,,_XXXSX,_XX,_X,,,,,,,,19,162,Shooter
 20,Squeezer,Squeezer,,3,SSS,Common,1,7,,_____S,____X,__XX,__XX,__X,,,,,,,20,162,Shooter
@@ -113,7 +113,7 @@ No.,Name,Title Line 1,Title Line 2,Special Cost,Special Cost X,Rarity,Season,Squ
 112,Inkline,Inkline,,4,SSSS,Rare,1,11,,,,_XXSXX,_XX_XX,_X___X,,,,,,,112,162,Brand
 113,Tentatek,Tentatek,,1,S,Rare,1,2,,,,____S,___X,,,,,,,,113,162,Brand
 114,Takoroka,Takoroka,,5,SSSSS,Rare,1,13,,,_XXS_X,__XXXXX,_XXX_X,,,,,,,,114,162,Brand
-115,Annaki,Annaki,,5,SSSSS,Rare,1,12,,___X,__XXX,__XXX,__XSX,_X___X,,,,,,,115,162,Brand
+115,Annaki,Annaki,,5,SSSSS,Rare,1,12,,___X,__XXX,__XXX,__XSX,_X___X,,,Astrallum,115_Astrallum,,,115,162,Brand
 116,Enperry,Enperry,,5,SSSSS,Rare,1,13,,,____X,_X_SXX,__XXX,_XXXXX,,,,,,,116,162,Brand
 117,Toni Kensa,Toni Kensa,,3,SSS,Rare,1,8,,,__X,__XXX,__X,__XSX,,,,,,,117,162,Brand
 118,Barazushi,Barazushi,,4,SSSS,Rare,1,9,,,_____X,____XX,___X_S,__XXXX,,,,,,,118,162,Brand
