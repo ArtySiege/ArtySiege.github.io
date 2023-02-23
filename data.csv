@@ -66,7 +66,7 @@ No.,Name,Title Line 1,Title Line 2,Special Cost,Special Cost X,Rarity,Season,Squ
 65,Point Sensor,Point Sensor,,2,SS,Common,1,5,,,__X_X,___S,__X_X,,,,,,,,65,162,Sub
 66,Ink Mine,Ink Mine,,2,SS,Common,1,4,,,___X,__X_X,___S,,,,,,,,66,162,Sub
 67,Toxic Mist,Toxic Mist,,2,SS,Common,1,5,,,__X,___SX,___XX,,,,,,,,67,162,Sub
-68,Angle Shooter,Angle Shooter,,2,SS,Common,1,5,,____S,___X,__X,___X,____X,,,,,,,68,162,Sub
+68,Angle Shooter,Angle Shooter,,2,SS,Common,1,5,,____S,___X,__X,___X,____X,,,Astrallum,068_Astrallum,,,68,162,Sub
 69,Torpedo,Torpedo,,2,SS,Common,1,4,,,___X,___XX,__S,,,,,,,,69,162,Sub
 70,Trizooka,Trizooka,,3,SSS,Rare,1,12,,_____XX,___X_XX,__X_X,_X_X,__XX,___X,,,,,,70,162,Special
 71,Big Bubbler,Big Bubbler,,3,SSS,Rare,1,12,,___XX,__X__X,_X____X,_X____X,__X__X,___XX,,,,,,71,162,Special

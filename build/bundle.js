@@ -3261,11 +3261,11 @@ var app = (function () {
           if (firstReading) {
             firstReading = false;
             baseOrientation = getRawOrientation(e);
-            // console.log("Starting Orientation from: ", baseOrientation );
+            console.log('Starting Orientation from: ', baseOrientation);
           }
 
           const o = getOrientationObject(e);
-          // console.log("Setting Orientation to: ", o );
+          console.log('Setting Orientation to: ', o);
           set(o);
         });
       };
@@ -3274,7 +3274,7 @@ var app = (function () {
 
       return function stop() {
         window.removeEventListener('deviceorientation', handleOrientation, true);
-        // console.log("Stopping Orientation Tracking");
+        console.log('Stopping Orientation Tracking');
       }
     });
 
