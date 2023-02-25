@@ -5,7 +5,7 @@ No.,Name,Title Line 1,Title Line 2,Special Cost,Special Cost X,Rarity,Season,Squ
 4,Splash-o-matic,Splash-o-matic,,3,SSS,Common,1,7,,,____X,__XXXS,___XX,,,,Gummymela,004_Gummymela,,,4,162,Shooter
 5,Aerospray MG,Aerospray MG,,3,SSS,Common,1,7,,,__XS,__XXXX,___X,,,,skylar,005_skylarraeart,,,5,162,Shooter
 6,Splattershot,Splattershot,,3,SSS,Common,1,8,,,__XXS,__XXXX,__X,,,,,,,,6,162,Shooter
-7,.52 Gal,.52 Gal,,3,SSS,Common,1,7,,,__XXXS,___XX,__X,,,,,,,,7,162,Shooter
+7,.52 Gal,.52 Gal,,3,SSS,Common,1,7,,,__XXXS,___XX,__X,,,,FishyTheEgg,007_FishyTheEgg,,,7,162,Shooter
 8,N-ZAP '85,N-ZAP '85,,2,SS,Common,1,5,,,__XXSX,__X,,,,,,,,,8,162,Shooter
 9,Splattershot Pro,Splattershot,Pro,4,SSSS,Common,1,9,,,____XS,_XXXXXX,___X,,,,,,,,9,162,Shooter
 10,.96 Gal,.96 Gal,,4,SSSS,Common,1,10,,,_XXXXXS,__XXX,_X,,,,,,,,10,162,Shooter
@@ -76,7 +76,7 @@ No.,Name,Title Line 1,Title Line 2,Special Cost,Special Cost X,Rarity,Season,Squ
 75,Booyah Bomb,Booyah Bomb,,3,SSS,Rare,1,12,,,___XX,__XXXX,__XXXX,___XX,,,,,,,75,162,Special
 76,Wave Breaker,Wave Breaker,,3,SSS,Rare,1,12,,_X_X_X,__X_X,_X___X,__X_X,_X_X_X,,,,,,,76,162,Special
 77,Ink Vac,Ink Vac,,3,SSS,Rare,1,12,,,_XX___X,_XXX__X,__XX__X,____XX,,,Taylor,077_Taylor,,,77,162,Special
-78,Killer Wail 5.1,Killer Wail 5.1,,3,SSS,Rare,1,12,,___X,_X_X_X,__X_X,__X_X,_X_X_X,___X,,,,,,78,162,Special
+78,Killer Wail 5.1,Killer Wail 5.1,,3,SSS,Rare,1,12,,___X,_X_X_X,__X_X,__X_X,_X_X_X,___X,,FishyTheEgg,078_FishyTheEgg,,,78,162,Special
 79,Inkjet,Inkjet,,3,SSS,Rare,1,12,,,_XXXXXX,_X_XX_X,___XX,,,,,,,,79,162,Special
 80,Ultra Stamp,Ultra Stamp,,3,SSS,Rare,1,12,,,____XX,_XXXXXX,___XXXX,,,,,,,,80,162,Special
 81,Crab Tank,Crab Tank,,3,SSS,Rare,1,12,,__X__X,___XX,__X__X,_X____X,_XX__XX,,,alalampone,081_alalampone,,,81,162,Special
