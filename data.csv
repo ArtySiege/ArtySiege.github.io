@@ -55,7 +55,7 @@ No.,Name,Title Line 1,Title Line 2,Special Cost,Special Cost X,Rarity,Season,Squ
 54,Splatana Stamper,Splatana,Stamper,3,SSS,Common,1,6,,___S,___X,___X,___X,___X,___X,,,,,,54,162,Splatana
 55,Splatana Wiper,Splatana,Wiper,2,SS,Common,1,5,,___S,___X,___X,___X,___X,,,Ashen,055_Ashenberry,,,55,162,Splatana
 56,Splat Bomb,Splat Bomb,,1,S,Common,1,3,,,,____S,___XX,,,,Temkyun,056_Temkyun,,,56,162,Sub
-57,Suction Bomb,Suction Bomb,,1,S,Common,1,3,,,___X,___X,___S,,,,,,,,57,162,Sub
+57,Suction Bomb,Suction Bomb,,1,S,Common,1,3,,,___X,___X,___S,,,,Gravey,057_Gravey_RGB,,,57,162,Sub
 58,Burst Bomb,Burst Bomb,,1,S,Common,1,1,,,,___S,,,,,zippy,58_zippy,,,58,162,Sub
 59,Sprinkler,Sprinkler,,1,S,Common,1,3,,,,__X_X,___S,,,,,,,,59,162,Sub
 60,Splash Wall,Splash Wall,,2,SS,Common,1,5,,,__XXX,___S,___X,,,,,,,,60,162,Sub
@@ -167,7 +167,7 @@ No.,Name,Title Line 1,Title Line 2,Special Cost,Special Cost X,Rarity,Season,Squ
 166,Forge Splattershot Pro,Forge,Splattershot Pro,4,SSSS,Common,2,9,,,__SX,_XXXXXX,____X,,,,,,,,4,13,Shooter
 167,Splattershot Nova,Splattershot Nova,,4,SSSS,Common,2,10,,,_XXXX,_XXXXS,__X,,,,,,,,5,13,Shooter
 168,Luna Blaster Neo,Luna Blaster,Neo,3,SSS,Common,2,7,,,__S,___XXX,___XX,____X,,,,,,,6,13,Blaster
-169,Carbon Roller Deco,Carbon Roller,Deco,3,SSS,Common,2,7,,,__XXXX,___SX,___X,,,,,,,,7,13,Roller
+169,Carbon Roller Deco,Carbon Roller,Deco,3,SSS,Common,2,7,,,__XXXX,___SX,___X,,,,Gravey,169_Gravey_RGB,,,7,13,Roller
 170,Big Swig Roller,Big Swig Roller,,4,SSSS,Common,2,9,,,_XXXSXX,___XX,___X,,,,,,,,8,13,Roller
 171,Inkbrush Nouveau,Inkbrush,Nouveau,3,SSS,Common,2,7,,_XS,_XX,___X,____X,_____X,,,,,,,9,13,Brush
 172,Snipewriter 5H,Snipewriter 5H,,4,SSSS,Common,2,9,,,_X,XXXXXSX,__X,,,,,,,,10,13,Charger
