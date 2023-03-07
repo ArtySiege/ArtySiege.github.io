@@ -12,13 +12,13 @@
 <style>
   special {
     position: absolute;
-    width: 22px;
+    width: calc(var(--gallery-scale) * 22px);
     height: fit-content;
-    left: 34px;
-    top: 108px;
+    left: calc(var(--gallery-scale) * 34px);
+    top: calc(var(--gallery-scale) * 108px);
     display: flex;
     flex-direction: column;
-    gap: 2.5px;
+    gap: calc(var(--gallery-scale) * 2.5px);
   }
   .special-square {
     width: 100%;

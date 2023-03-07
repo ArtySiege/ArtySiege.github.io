@@ -1,67 +1,91 @@
 <script lang="ts">
-  import { select_value } from 'svelte/internal'
+  import { onMount, select_value } from 'svelte/internal'
   import { Grid } from 'svelte-virtual'
   import Card from './Card.svelte'
   import CardContext from './Context.svelte'
   import { CardDetails, CardFeatureType, FeatureTypeFilterOptions } from './interface'
+  import { prefersReducedMotion } from '../stores/interaction'
+  import { cards } from '../stores/cards'
 
   let displayFilter: CardFeatureType | 'All' = 'All'
   let search = ''
 
-  let cards = []
-  const getCards = async () => {
-    let cardFetch = await fetch('/data.csv')
-    let cardData = await cardFetch.text()
+  let gridWrapperWidth = 1
+  const cardWidth = (744 + 71) / 2
+  const cardHeight = (1039 + 71) / 2
+  let userScale = 1
+  let gridFitColumns = Math.max(1, Math.floor(window.innerWidth / (cardWidth * userScale)))
+  let gridWrapperHeight = window.innerHeight
+  let scale = 1
 
-    const cardRows = cardData.split('\r\n')
-    cardRows.shift()
-    cards = cardRows.map((row) => {
-      const cols = row.split(',')
-      return {
-        nameParts: cols.slice(2, 4).filter((s) => !!s) as [string, string?],
-        img: cols[18],
-
-        number: parseInt(cols[0]),
-        rarity: cols[6].toLowerCase() as 'common' | 'rare' | 'fresh',
-        featureType: cols[23] as CardDetails['featureType'],
-        series: cols[7],
-        seriesNumber: cols[21],
-        seriesTotal: cols[22],
-
-        grid: cols.slice(9, 17) as [string, string, string, string, string, string, string, string],
-        points: cols[8],
-        specialCost: parseInt(cols[4]),
-
-        artist: cols[17],
-        artistLinkType: cols[20],
-        artistLink: cols[19],
+  onMount(() => {
+    setTimeout(() => {
+      gridFitColumns = Math.floor(gridWrapperWidth / (cardWidth * userScale))
+      if (gridFitColumns < 1) {
+        gridFitColumns = 1
+        scale = gridWrapperWidth / (cardWidth * userScale)
+      } else {
+        scale = 1
       }
-    })
-    return cards
+      gridWrapperHeight = Math.ceil(filteredCards.length / gridFitColumns) * cardHeight
+    }, 1000)
+  })
+
+  $: {
+    gridFitColumns = Math.floor(gridWrapperWidth / (cardWidth * userScale))
+    if (gridFitColumns < 1) {
+      gridFitColumns = 1
+      scale = gridWrapperWidth / (cardWidth * userScale)
+    } else {
+      scale = 1
+    }
+    gridWrapperHeight = Math.ceil(filteredCards.length / gridFitColumns) * cardHeight
   }
 
   const setDisplayFilter = (filter: string) => {
     displayFilter = filter as CardFeatureType | 'All'
   }
-  $: filteredCards = cards.filter(
+  $: filteredCards = $cards.filter(
     (c) =>
       c.img &&
       (displayFilter === 'All' || c.featureType === displayFilter) &&
-      (search === '' || c.artist.toLowerCase().includes(search.toLowerCase()))
+      (search === '' ||
+        c.artist.toLowerCase().includes(search.toLowerCase()) ||
+        c.artistAlias.toLowerCase().includes(search.toLowerCase()))
   )
 
   let scrollToIndex
 </script>
 
-<main>
+<main style="--gallery-scale: {scale * userScale}">
   <h2>Card Gallery</h2>
-  {#await getCards()}
+  {#await cards.init()}
     loading...
-  {:then cards}
+  {:then}
     <div class="filters">
       <h3>Search by artist:</h3>
       <input bind:value={search} />
+
       <h3>Filter by card type:</h3>
+      <div class="featureTypeSelect">
+        <select bind:value={displayFilter}>
+          <option value="All">All</option>
+          {#each FeatureTypeFilterOptions as featureType}
+            {#if typeof featureType === 'string'}
+              <option value={featureType}>{featureType}</option>
+            {:else}
+              {#each Object.keys(featureType) as key}
+                <!-- <optgroup label={key}> -->
+                {#each featureType[key] as subType}
+                  <option value={subType}>{subType}</option>
+                {/each}
+                <!-- </optgroup> -->
+              {/each}
+            {/if}
+          {/each}
+        </select>
+      </div>
+
       <div class="featureTypeButton">
         <button
           on:click={() => setDisplayFilter('All')}
@@ -91,39 +115,30 @@
         {/each}
       </div>
       <div>
-        <button on:click={() => scrollToIndex(~~(Math.random() * filteredCards.length), 'smooth')}>
+        <button
+          on:click={() =>
+            scrollToIndex(~~(Math.random() * filteredCards.length), $prefersReducedMotion ? 'auto' : 'smooth')}
+        >
           Jump to a random card!
         </button>
       </div>
-      <div class="featureTypeSelect">
-        <select bind:value={displayFilter}>
-          <option value="All">All</option>
-          {#each FeatureTypeFilterOptions as featureType}
-            {#if typeof featureType === 'string'}
-              <option value={featureType}>{featureType}</option>
-            {:else}
-              {#each Object.keys(featureType) as key}
-                <!-- <optgroup label={key}> -->
-                {#each featureType[key] as subType}
-                  <option value={subType}>{subType}</option>
-                {/each}
-                <!-- </optgroup> -->
-              {/each}
-            {/if}
-          {/each}
-        </select>
+      <div>
+        <input type="range" min=".25" max="1" bind:value={userScale} step="0.05" />
+        <span>Prefer reduced motion</span><input type="checkbox" bind:checked={$prefersReducedMotion} />
       </div>
     </div>
-    <div>
-      {#key (displayFilter, search)}
+    <div class="grid_wrapper" bind:clientWidth={gridWrapperWidth}>
+      {#key gridFitColumns + displayFilter + search}
         <Grid
-          width="100%"
-          height={window.outerHeight}
-          itemWidth={(744 + 71) / 2}
-          itemHeight={(1039 + 71) / 2}
+          width={cardWidth ? cardWidth * userScale * gridFitColumns + 20 + 'px' : '100%'}
+          height={Math.min(window.innerHeight, gridWrapperHeight)}
+          itemWidth={cardWidth * scale * userScale}
+          itemHeight={cardHeight * scale * userScale}
           itemCount={filteredCards.length}
+          marginLeft={10 * scale * userScale}
           bind:scrollToIndex
         >
+          <p slot="header">Click on a card for artist links and notes!</p>
           <div slot="placeholder" let:style {style}>
             <img
               class="card_back"
@@ -142,6 +157,9 @@
           >
             <Card {style} />
           </CardContext>
+          <div slot="footer" style="height: 100px">
+            <!-- spacer to allow extra scroll when the artist notes are open -->
+          </div>
         </Grid>
       {/key}
     </div>
@@ -152,13 +170,24 @@
   main {
     text-align: center;
     /* padding: 1em; */
-    margin: 0 auto;
+    /* margin: 0 auto; */
   }
   .featureTypeButton {
     display: none;
     gap: 0 0.5rem;
     flex-wrap: wrap;
     justify-content: center;
+  }
+  .grid_wrapper {
+    display: inline-flex;
+    justify-content: center;
+    width: 100vw;
+    transform-origin: top;
+  }
+  :global(.grid_wrapper) > div {
+    margin: auto;
+    /* overflow-x: hidden; */
+    padding-left: calc(var(--padding) * var(--gallery-scale)) !important;
   }
   .featureTypeButton.selected {
     color: blue;

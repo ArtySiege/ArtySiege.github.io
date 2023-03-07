@@ -2,6 +2,7 @@
   import { getCardContext } from '../getCardContext'
   import { styles } from '../../stores/style'
   const card = getCardContext()
+  const rarity = card.rarity
 </script>
 
 <points class={card.rarity}>
@@ -17,15 +18,15 @@
     background-image: url('../img/UI/ScoreDiamond.png');
     color: white;
     font-family: Splatoon1;
-    font-size: 36px;
-    width: 86.5px;
-    height: 86.5px;
-    line-height: 86.5px;
+    font-size: calc(var(--gallery-scale) * 36px);
+    width: calc(var(--gallery-scale) * 86.5px);
+    height: calc(var(--gallery-scale) * 86.5px);
+    line-height: calc(var(--gallery-scale) * 86.5px);
     display: block;
     background-size: contain;
     background-repeat: no-repeat;
-    left: 23px;
-    top: 23px;
+    left: calc(var(--gallery-scale) * 23px);
+    top: calc(var(--gallery-scale) * 23px);
     position: absolute;
     --shadowColor: #442f8e;
     will-change: transform;
@@ -44,7 +45,7 @@
   }
   text.stroke {
     stroke: var(--shadowColor);
-    stroke-width: 7px;
+    stroke-width: calc(var(--gallery-scale) * 7px);
   }
   text.fill {
     fill: white !important;

@@ -21,5 +21,5 @@
 </script>
 
 <!-- <div bind:clientWidth={cardWidth} style="width:{width}px; height: {height}px; transform: scale({scale})"> -->
-<slot {style} />
+<slot />
 <!-- </div> -->

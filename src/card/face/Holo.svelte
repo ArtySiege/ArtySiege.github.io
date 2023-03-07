@@ -3,7 +3,7 @@
   const card = getCardContext()
 </script>
 
-<div class="holo {card.rarity}" />
+<div class="holo {card.rarity}" data-html2canvas-ignore />
 
 <style>
   /*
@@ -29,7 +29,7 @@
   .holo {
     --space: 3%;
 
-    background-image: url('../img/UI/CardBackground_SplattersGrid.webp'),
+    background-image: url('../img/UI/CardBackground_Holo.webp'),
       repeating-linear-gradient(
         -63deg,
         rgb(255, 119, 115) calc(var(--space) * 1),
@@ -41,9 +41,9 @@
         rgb(255, 119, 115) calc(var(--space) * 7)
       );
 
-    background-blend-mode: multiply, color-burn, hard-light;
-    background-position: 0, var(--posx) var(--posy), center;
-    background-size: cover, 400% 200%, cover;
+    background-blend-mode: multiply, color-burn;
+    background-position: 0, var(--posx) var(--posy);
+    background-size: cover, 400% 200%;
 
     filter: brightness(0.75) contrast(1.2) saturate(1.5) blur(1px);
     mix-blend-mode: color-dodge;

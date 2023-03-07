@@ -3,8 +3,8 @@
   const card = getCardContext()
 </script>
 
-<numbering>
-  <span>
+<numbering style="--color: {card.seriesColorOverride}">
+  <span class="designation">
     {card.seriesNumber}/{card.seriesTotal}
   </span>
   <span class="set set-{card.series}" />
@@ -13,25 +13,31 @@
 <style>
   numbering {
     position: absolute;
-    right: 33px;
-    top: 506px;
-    font-size: 12px;
-    color: black;
+    right: calc(var(--gallery-scale) * 33px);
+    top: calc(var(--gallery-scale) * 506px);
+    font-size: calc(var(--gallery-scale) * 12px);
     display: flex;
+    --color: black;
+  }
+  .designation {
+    color: var(--color);
   }
   .set {
-    width: 19px;
-    height: 16px;
+    width: calc(var(--gallery-scale) * 19px);
+    height: calc(var(--gallery-scale) * 16px);
     background-repeat: no-repeat;
     background-size: contain;
-    margin-top: 4px;
-    margin-left: 2px;
+    margin-top: calc(var(--gallery-scale) * 4px);
+    margin-left: calc(var(--gallery-scale) * 2px);
   }
   .set-1 {
-    background-image: url('../img/UI/2023_Drizzle.svg');
+    background-image: url('../img/UI/2022_Drizzle.svg');
   }
   .set-2 {
-    background-image: url('../img/UI/2023_Chill.svg');
+    background-image: url('../img/UI/2022_Chill.svg');
+  }
+  .set-3 {
+    background-image: url('../img/UI/2023_Fresh.svg');
   }
   @media print {
     numbering {

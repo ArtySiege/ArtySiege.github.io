@@ -3,17 +3,20 @@
   const card = getCardContext()
 </script>
 
-<illus>
-  Illus. {card.artist}
+<illus style="--color: {card.creditColorOverride}">
+  <span>Illus. {card.artist}</span>
 </illus>
 
 <style>
   illus {
     position: absolute;
-    left: 35px;
-    top: 506px;
-    font-size: 12px;
-    color: black;
+    left: calc(var(--gallery-scale) * 35px);
+    top: calc(var(--gallery-scale) * 506px);
+    font-size: calc(var(--gallery-scale) * 12px);
+    --color: black;
+  }
+  span {
+    color: var(--color);
   }
   @media print {
     illus {

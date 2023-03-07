@@ -17,8 +17,12 @@ type CardDetails = {
   specialCost: number
   // Artist details
   artist: string
+  artistAlias: string
   artistLinks?: Array<{ title: string; link: string }>
-  bio?: string
+  creditColorOverride?: string
+  seriesColorOverride?: string
+  // Artist remarks
+  description?: string
 }
 
 type CardFeatureType =

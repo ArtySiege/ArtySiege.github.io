@@ -1,27 +1,9 @@
-# This repo is no longer maintained. Consider using `npm init vite` and selecting the `svelte` option or — if you want a full-fledged app framework and don't mind using pre-1.0 software — use [SvelteKit](https://kit.svelte.dev), the official application framework for Svelte.
-
----
-
-# svelte app
-
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
-
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
-```
-
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
-
-
-## Get started
+## Running in dev mode
 
 Install the dependencies...
 
 ```bash
-cd svelte-app
+cd artysiege.github.io
 npm install
 ```
 
@@ -58,50 +40,22 @@ If you're building a single-page app (SPA) with multiple routes, sirv needs to b
 "start": "sirv public --single"
 ```
 
-## Using TypeScript
-
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
-
-```bash
-node scripts/setupTypeScript.js
-```
-
-Or remove the script via:
-
-```bash
-rm scripts/setupTypeScript.js
-```
-
-If you want to use `baseUrl` or `path` aliases within your `tsconfig`, you need to set up `@rollup/plugin-alias` to tell Rollup to resolve the aliases. For more info, see [this StackOverflow question](https://stackoverflow.com/questions/63427935/setup-tsconfig-path-in-svelte).
-
 ## Deploying to the web
 
-### With [Vercel](https://vercel.com)
+### With [gh-pages](https://github.com/tschaub/gh-pages)
 
-Install `vercel` if you haven't already:
+This deploy pushes the files from the public folder to the gh-pages project branch.
+This branch is used for the page at https://artysiege.github.io
 
-```bash
-npm install -g vercel
-```
-
-Then, from within your project folder:
+From within the project folder:
 
 ```bash
-cd public
-vercel deploy --name my-project
+npm run build 
+npm run deploy
 ```
 
-### With [surge](https://surge.sh/)
+# svelte app
 
-Install `surge` if you haven't already:
+This project was built on svelte app, https://github.com/sveltejs/template
 
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
-```
+That repo is no longer maintained and recommends using `npm init vite` and selecting the `svelte` option for initialisation of new Svelte apps.
