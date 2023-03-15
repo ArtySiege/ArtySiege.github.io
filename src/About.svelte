@@ -1,16 +1,12 @@
 <script>
-  import { cards } from './stores/cards'
-  let artistCount
-  $: {
-    artistCount = new Set($cards.map((c) => c.artist)).size
-  }
+  import { cards, uniqueArtists } from './stores/cards'
 </script>
 
 <about>
   <section>
     <div class="card mini">
       A unique Tableturf deck for you to print at home, currently featuring {$cards.filter((c) => !!c.img).length} cards
-      illustrated by {artistCount}
+      illustrated by {$uniqueArtists.length}
       artists!
     </div>
   </section>
@@ -30,6 +26,18 @@
       <p>It also contains some of the same sounds as “our TCG”, a reference to the acronym for “Trading Card Game”.</p>
     </div>
   </section>
+  <section class="print">
+    How to print:
+    <p>These cards are sized for printing on A4 or Letter sized pages, with no bleed.</p>
+    <p>
+      In the "More Settings" section of your browser print dialog, set the Scale to "100%" - you may need to pick
+      "Customized" first then set 100% as the scale.
+    </p>
+    <p>
+      If your browser has options to adjust margins, choose "Custom" margins and then adjust the top and left margins
+      until the cards are centered on the page.
+    </p>
+  </section>
 </about>
 
 <style>
@@ -42,6 +50,7 @@
   }
   strong {
     font-weight: bold;
+    font-family: Splatoon1;
   }
 
   .card {
@@ -71,6 +80,24 @@
   @media (max-width: 780px) {
     section {
       flex-direction: column;
+    }
+  }
+
+  @media screen {
+    .print {
+      display: none;
+    }
+  }
+
+  @media print {
+    about {
+      background: none;
+    }
+    section {
+      display: none;
+    }
+    section.print {
+      display: block;
     }
   }
 </style>
