@@ -7,17 +7,30 @@
   window.addEventListener('beforeprint', (event) => {
     printing.set(true)
   })
+  let cardGroups: Array<Array<CardDetails>> = []
+  $: {
+    cardGroups = []
+    const printCards = $cards.filter((c) => !!c.artist)
+    while (printCards.length > 0) {
+      cardGroups.push(printCards.splice(0, 9))
+    }
+  }
+
+  let marginHorizontal: number = 7.5
+  let marginUnits: 'mm' | 'inch' = 'mm'
 </script>
 
 <main>
   {#if $printing}
-    <div class="wrapper">
-      {#each $cards.filter((c) => !!c.artist) as card, i}
-        <CardContext cardDetails={card} width={69} height={94} units="mm">
-          <Card pagebreak={i % 9 === 8} style="" />
-        </CardContext>
-      {/each}
-    </div>
+    {#each cardGroups as group}
+      <div class="wrapper" style="--marginHorizontal: {marginHorizontal}{marginUnits}">
+        {#each group as card, i}
+          <CardContext cardDetails={card} width={69} height={94} units="mm">
+            <Card style="" animate={false} />
+          </CardContext>
+        {/each}
+      </div>
+    {/each}
   {/if}
 </main>
 
@@ -25,7 +38,6 @@
   main {
     text-align: center;
     /* padding: 1em; */
-    margin: 0;
     font-size: 2.1875mm;
   }
   .wrapper {
@@ -33,6 +45,8 @@
     grid-template-columns: 63mm 63mm 63mm;
     grid-auto-rows: 88mm;
     page-break-before: always;
+    /* padding: 0 var(--marginHorizontal); */
+    margin: auto;
   }
 
   @media screen {
