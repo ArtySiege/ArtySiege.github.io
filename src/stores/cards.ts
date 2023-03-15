@@ -73,20 +73,28 @@ export const activeCard: Readable<CardDetails> = derived([cards, activeCardNumbe
   $activeCardNumber ? $cards[$activeCardNumber - 1] : undefined
 )
 
-export const uniqueArtists: Readable<Array<Pick<CardDetails, 'artist' | 'artistAlias' | 'artistLinks'>>> = derived(
-  cards,
-  ($cards) => {
-    const artists: Array<Pick<CardDetails, 'artist' | 'artistAlias' | 'artistLinks'>> = []
-    const seenArtists = new Set()
-    $cards.forEach((c) => {
-      if (!seenArtists.has(c.artist)) {
-        artists.push({ artist: c.artist, artistAlias: c.artistAlias, artistLinks: c.artistLinks })
-        seenArtists.add(c.artist)
-      }
-    })
-    artists.sort((a, b) => a.artist.localeCompare(b.artist))
-    return artists
-  }
-)
+type ArtistCredit = { cardNumbers: Array<number> } & Pick<CardDetails, 'artist' | 'artistAlias' | 'artistLinks'>
+
+export const uniqueArtists: Readable<Array<ArtistCredit>> = derived(cards, ($cards) => {
+  const artists: Array<ArtistCredit> = []
+  const seenArtists: Record<string, number> = {}
+  $cards.forEach((c) => {
+    if (c.artist && seenArtists[c.artist] === undefined) {
+      seenArtists[c.artist] = artists.length
+      artists.push({
+        artist: c.artist,
+        artistAlias: c.artistAlias,
+        artistLinks: c.artistLinks,
+        cardNumbers: [c.number],
+      })
+    }
+    if (seenArtists[c.artist]) {
+      const entry = artists[seenArtists[c.artist]]
+      entry.cardNumbers = [...entry.cardNumbers, c.number]
+    }
+  })
+  artists.sort((a, b) => a.artist.localeCompare(b.artist))
+  return artists
+})
 
 export { activeCardNumber, cards, printing }
