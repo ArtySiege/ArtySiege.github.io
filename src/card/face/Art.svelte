@@ -21,6 +21,7 @@
   alt="{card.name} illustrated by {card.artist}"
   on:load={imageLoader}
   loading="lazy"
+  data-html2canvas-ignore
 />
 
 <style>

@@ -46,6 +46,7 @@
   text.stroke {
     stroke: var(--shadowColor);
     stroke-width: calc(var(--gallery-scale) * 7px);
+    stroke-linejoin: round;
   }
   text.fill {
     fill: white !important;

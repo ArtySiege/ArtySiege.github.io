@@ -12,6 +12,7 @@
   $: active = $activeCardNumber === card.number
   export let style
   export let pagebreak = false
+  export let animate = true
   let loading = true
 
   const imageLoader = (e) => {
@@ -73,9 +74,11 @@
   }
 
   const onMouseMove = (e) => {
-    window.requestAnimationFrame(function () {
-      transformElement(e.clientX, e.clientY)
-    })
+    if (animate) {
+      window.requestAnimationFrame(function () {
+        transformElement(e.clientX, e.clientY)
+      })
+    }
   }
 
   const onClick = (e) => {
@@ -85,7 +88,6 @@
       activeCardNumber.set(card.number)
       // capture()
     }
-    active = !active
     resetBaseOrientation()
   }
 
@@ -104,18 +106,7 @@
   let ref: HTMLElement
 
   const capture = () => {
-    var svgElem = ref.getElementsByTagName('svg')
-    for (const node of svgElem) {
-      if (!node.hasAttribute('height') || !node.hasAttribute('width')) {
-        const height = window.getComputedStyle(node, null).height
-        const width = window.getComputedStyle(node, null).width
-        node.setAttribute('width', width)
-        node.setAttribute('height', height)
-        node.replaceWith(node)
-      }
-    }
-
-    html2canvas(ref, { removeContainer: true }).then((canvas) => {
+    html2canvas(ref, { removeContainer: true, backgroundColor: null }).then((canvas) => {
       document.body.appendChild(canvas)
     })
   }
@@ -136,12 +127,7 @@
     style="--mx:{mx}px; --my:{my}px; transform: rotateX({x}deg) rotateY({y}deg);--posx: {posx}%; --posy:{posy}%; --o: {o}"
     bind:this={tiltBox}
   >
-    <img
-      class="card_back"
-      src="./img/UI/CardBack.png"
-      alt="The back of an Arty Siege card, showing the logo and splatters"
-      loading="lazy"
-    />
+    <img class="card_back" src="./img/UI/CardBack.webp" alt="The back of an Arty Siege card" data-html2canvas-ignore />
     <div class="card_front">
       <div>
         <img
@@ -149,13 +135,13 @@
           src={card_front_background}
           aria-hidden="true"
           alt="Background for {card.rarity} card"
-          loading="lazy"
+          data-html2canvas-ignore
         />
       </div>
       <Holo />
       <Face />
-      <Glare />
     </div>
+    <Glare />
   </div>
 </card>
 
@@ -171,6 +157,7 @@
     margin: 0;
     padding: 0;
     cursor: pointer;
+    filter: drop-shadow(0px 0px calc(5px * var(--gallery-scale)) black);
   }
   card:focus {
     background: transparent;
@@ -179,6 +166,7 @@
     page-break-after: always;
   }
   .tilt {
+    will-change: transform;
     transform-style: preserve-3d;
     transition: all 0.1s;
     width: 100%;
@@ -193,8 +181,9 @@
     width: 100%;
     height: 100%;
     will-change: transform;
-    transform-style: preserve-3d;
-    transform: rotateY(180deg);
+    clip-path: inset(calc(var(--gallery-scale) * 17.75px) round calc(var(--gallery-scale) * 20px));
+    /* transform-style: preserve-3d; */
+    /* transform: rotateY(180deg) scaleX(-1); */
   }
   .card_front {
     position: absolute;
@@ -203,6 +192,13 @@
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    clip-path: inset(calc(var(--gallery-scale) * 17.75px) round calc(var(--gallery-scale) * 20px));
+  }
+  .card_front :global(*) {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
   .rarity_back {
     position: absolute;
@@ -223,6 +219,13 @@
     }
     .tilt {
       clip-path: unset;
+    }
+    .card_back {
+      display: none;
+    }
+    .card_back,
+    .card_front {
+      clip-path: none;
     }
     card::before {
       content: '';
