@@ -1,12 +1,13 @@
 <script lang="ts">
   import { setContext } from 'svelte'
   import About from './About.svelte'
+  import BoosterGroup from './BoosterGroup.svelte'
   import Gallery from './card/Gallery.svelte'
   import PrintGallery from './card/PrintGallery.svelte'
+  import Titles from './card/Titles.svelte'
   import Credits from './Credits.svelte'
   import Navigation from './Navigation.svelte'
   import { activeCard, activeCardNumber, cards, printing } from './stores/cards'
-
   const closeDetail = () => {
     activeCardNumber.set(undefined)
   }
@@ -15,6 +16,8 @@
 <main>
   <Navigation />
   <About />
+  <!-- <BoosterGroup /> -->
+  <!-- <Titles /> -->
   <Gallery />
   <PrintGallery />
   {#if $activeCard}

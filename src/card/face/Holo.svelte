@@ -3,7 +3,21 @@
   const card = getCardContext()
 </script>
 
-<div class="holo {card.rarity}" data-html2canvas-ignore />
+<div
+  class="holo {card.rarity}"
+  style="background-image: url('../img/HoloOverlays/{card.number.toString().padStart(3, '0')}.webp'),
+repeating-linear-gradient(
+  -63deg,
+  rgb(255, 119, 115) calc(var(--space) * 1),
+  rgba(255, 237, 95, 1) calc(var(--space) * 2),
+  rgba(168, 255, 95, 1) calc(var(--space) * 3),
+  rgba(131, 255, 247, 1) calc(var(--space) * 4),
+  rgba(120, 148, 255, 1) calc(var(--space) * 5),
+  rgb(216, 117, 255) calc(var(--space) * 6),
+  rgb(255, 119, 115) calc(var(--space) * 7)
+);"
+  data-html2canvas-ignore
+/>
 
 <style>
   /*
@@ -28,18 +42,6 @@
 
   .holo {
     --space: 3%;
-
-    background-image: url('../img/UI/CardBackground_Holo.webp'),
-      repeating-linear-gradient(
-        -63deg,
-        rgb(255, 119, 115) calc(var(--space) * 1),
-        rgba(255, 237, 95, 1) calc(var(--space) * 2),
-        rgba(168, 255, 95, 1) calc(var(--space) * 3),
-        rgba(131, 255, 247, 1) calc(var(--space) * 4),
-        rgba(120, 148, 255, 1) calc(var(--space) * 5),
-        rgb(216, 117, 255) calc(var(--space) * 6),
-        rgb(255, 119, 115) calc(var(--space) * 7)
-      );
 
     background-blend-mode: multiply, color-burn;
     background-position: 0, var(--posx) var(--posy);

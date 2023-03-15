@@ -1,13 +1,11 @@
 <script lang="ts">
-  import Face from './face/Face.svelte'
   import { getCardContext } from './getCardContext'
   import Glare from './face/Glare.svelte'
   import Holo from './face/Holo.svelte'
   import { prefersReducedMotion } from '../stores/interaction'
   import { orientation, resetBaseOrientation } from '../stores/orientation'
   import { activeCardNumber } from '../stores/cards'
-  import html2canvas from 'html2canvas'
-  // import { saveAs } from 'FileSaver'
+  import Title from './face/Title.svelte'
   const card = getCardContext()
   $: active = $activeCardNumber === card.number
   export let style
@@ -19,13 +17,7 @@
     loading = false
   }
 
-  let card_front_background = './img/UI/CardBackground_Grey.webp'
-
-  if (card.rarity === 'rare') {
-    card_front_background = './img/UI/CardBackground_Gold.webp'
-  } else if (card.rarity === 'fresh') {
-    card_front_background = './img/UI/CardBackground_Fresh.webp'
-  }
+  let card_front_background = './img/Merged/' + card.number.toString().padStart(3, '0') + '.webp'
 
   let img_base = card.img.startsWith('http') ? '' : './img/'
   let front_img = ''
@@ -86,7 +78,6 @@
       activeCardNumber.set(undefined)
     } else {
       activeCardNumber.set(card.number)
-      // capture()
     }
     resetBaseOrientation()
   }
@@ -104,12 +95,6 @@
   }
 
   let ref: HTMLElement
-
-  const capture = () => {
-    html2canvas(ref, { removeContainer: true, backgroundColor: null }).then((canvas) => {
-      document.body.appendChild(canvas)
-    })
-  }
 </script>
 
 <card
@@ -138,8 +123,8 @@
           data-html2canvas-ignore
         />
       </div>
+      <Title />
       <Holo />
-      <Face />
     </div>
     <Glare />
   </div>
