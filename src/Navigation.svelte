@@ -10,15 +10,17 @@
 
 <nav>
   <img alt="Arty Siege" src="img/Logo.webp" height="60px" />
-  <button on:click={() => (showNav = !showNav)}>Navigation</button>
-  <ul class:showNav>
-    <li>About</li>
-    <li>Gallery</li>
-    <li><button on:click={handlePrint}>Print</button></li>
-    <li>What's Next</li>
-    <li>How to Play</li>
-    <li>Credits</li>
-  </ul>
+  <div class:showNav>
+    <button on:click={() => (showNav = !showNav)}><span /><span /><span /></button>
+    <ul class:showNav>
+      <li>About</li>
+      <li>Gallery</li>
+      <li class="print"><button on:click={handlePrint}>Print</button></li>
+      <li>What's Next</li>
+      <li>How to Play</li>
+      <li>Credits</li>
+    </ul>
+  </div>
 </nav>
 
 <style>
@@ -37,9 +39,21 @@
   img {
     height: 60px;
   }
-  nav > button {
+  nav > div > button {
     display: none;
+    background: none;
+    border: none;
   }
+  nav > div > button > span {
+    display: block;
+    width: 33px;
+    height: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    background: #ddd;
+    border-radius: 3px;
+  }
+
   ul {
     list-style-type: none;
     margin: 0;
@@ -55,22 +69,49 @@
     border: none;
     padding: 0;
     color: white;
-    pointer: cursor;
+    cursor: pointer;
+    margin-bottom: 0;
   }
 
   @media (max-width: 780px) {
-    button {
-      display: block;
-    }
     nav {
-      flex-direction: column;
+      align-items: start;
+      justify-content: space-between;
+    }
+    nav > div > button {
+      display: block;
+      align-self: center;
+      margin: 0 10px 0 auto;
+    }
+    nav > div.showNav > button {
+      margin: 17px 10px 8px auto;
+    }
+    nav > div {
+      text-align: right;
+      display: block;
+      align-self: center;
     }
     ul {
       flex-direction: column;
       display: none;
     }
-    ul.showNav {
+    .showNav ul {
       display: block;
+    }
+  }
+
+  @media screen {
+  }
+
+  @media print {
+    nav {
+    }
+    ul {
+      flex-direction: column;
+      display: none;
+    }
+    nav > div > button {
+      display: none;
     }
   }
 </style>
