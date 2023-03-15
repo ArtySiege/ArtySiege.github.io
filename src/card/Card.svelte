@@ -2,7 +2,7 @@
   import { getCardContext } from './getCardContext'
   import Glare from './face/Glare.svelte'
   import Holo from './face/Holo.svelte'
-  import { prefersReducedMotion } from '../stores/interaction'
+  import { prefersReducedMotion, prefersReducedLighting } from '../stores/interaction'
   import { orientation, resetBaseOrientation } from '../stores/orientation'
   import { activeCardNumber } from '../stores/cards'
   import Title from './face/Title.svelte'
@@ -57,12 +57,14 @@
       x = (mouseY - box.y - box.height / 2) / multiple
       y = -(mouseX - box.x - box.width / 2) / multiple
     }
-    mx = mouseX - box.x
-    my = mouseY - box.y
+    if (!$prefersReducedLighting) {
+      mx = mouseX - box.x
+      my = mouseY - box.y
 
-    posx = 100 * (mx / box.width)
-    posy = 100 * (my / box.height)
-    o = 1
+      posx = 100 * (mx / box.width)
+      posy = 100 * (my / box.height)
+      o = 1
+    }
   }
 
   const onMouseMove = (e) => {
@@ -123,10 +125,14 @@
           data-html2canvas-ignore
         />
       </div>
+      {#if !$prefersReducedLighting}
+        <Holo />
+      {/if}
       <Title />
-      <Holo />
     </div>
-    <Glare />
+    {#if !$prefersReducedLighting}
+      <Glare />
+    {/if}
   </div>
 </card>
 

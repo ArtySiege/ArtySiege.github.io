@@ -22,7 +22,6 @@
     mix-blend-mode: overlay;
     opacity: calc(var(--o) / 2);
     clip-path: inset(0% 0% round 6% / 5%);
-    /* cursor: pointer; */
   }
 
   @media print {

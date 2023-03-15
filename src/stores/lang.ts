@@ -7,10 +7,10 @@ const BOUNDING_WIDTH = 392 * 0.64
 const FONT_SIZE = 32
 const LETTER_SPACING = 0.5
 
-// const canvas = document.createElement('canvas')
-// canvas.width = BOUNDING_WIDTH
-// canvas.height = 0
-// document.body.appendChild(canvas)
+const canvas = document.createElement('canvas')
+canvas.width = BOUNDING_WIDTH
+canvas.height = 0
+document.body.appendChild(canvas)
 
 const calculateNameWidths = (cards) => {
   cards.forEach((card) => {

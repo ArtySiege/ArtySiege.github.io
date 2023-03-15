@@ -44,7 +44,7 @@
       {/if}
     </detail>
   {/if}
-  <!-- <Credits /> -->
+  <Credits />
 </main>
 
 <style>

@@ -4,7 +4,7 @@
   import Card from './Card.svelte'
   import CardContext from './Context.svelte'
   import { CardDetails, CardFeatureType, FeatureTypeFilterOptions } from './interface'
-  import { prefersReducedMotion } from '../stores/interaction'
+  import { prefersReducedMotion, prefersReducedLighting } from '../stores/interaction'
   import { cards } from '../stores/cards'
 
   let displayFilter: CardFeatureType | 'All' = 'All'
@@ -124,7 +124,8 @@
       </div>
       <div>
         <input type="range" min=".25" max="1" bind:value={userScale} step="0.05" />
-        <span>Prefer reduced motion</span><input type="checkbox" bind:checked={$prefersReducedMotion} />
+        <span>Disable Card Motion</span><input type="checkbox" bind:checked={$prefersReducedMotion} />
+        <span>Disable Lighting Effects</span><input type="checkbox" bind:checked={$prefersReducedLighting} />
       </div>
     </div>
     <div class="grid_wrapper" bind:clientWidth={gridWrapperWidth}>

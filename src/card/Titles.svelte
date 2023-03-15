@@ -7,7 +7,7 @@
   import { prefersReducedMotion } from '../stores/interaction'
   import { cards } from '../stores/cards'
   import TitleSvg from './face/TitleSvg.svelte'
-  import { calculateNameWidths } from '../stores/lang'
+  // import { calculateNameWidths } from '../stores/lang'
 
   const displayFilter = 'All'
   const search: string = ''
