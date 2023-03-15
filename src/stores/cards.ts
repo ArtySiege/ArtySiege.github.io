@@ -27,6 +27,7 @@ const createCardStore = () => {
         const cardDetails: CardDetails = {
           name: row['Name'],
           nameParts: [row['Title Line 1'], row['Title Line 2']].filter((s) => !!s) as [string, string?],
+          headerScale: parseFloat(row['Title Scale']),
           img: row['@Img'],
 
           number: parseInt(row['No.']),

@@ -1,6 +1,7 @@
 type CardDetails = {
   name: string
   nameParts: [string, string?]
+  headerScale: number
   img: string
 
   // Card categorisation
