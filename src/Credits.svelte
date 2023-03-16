@@ -1,5 +1,5 @@
 <script>
-  import { uniqueArtists } from './stores/cards'
+  import { filteredCards, uniqueArtists, scrollToIndex, activeCardNumber } from './stores/cards'
 </script>
 
 <main id="credits">
@@ -13,7 +13,24 @@
   <div class="contributors">
     {#each $uniqueArtists as artist}
       <span />
-      <span>{artist.artist}</span>
+      <span
+        >{artist.artist}
+        {#each artist.cards as card}
+          <button
+            on:click={() => {
+              $scrollToIndex($filteredCards.findIndex((c) => c.number === card.number))
+              // navigate to the gallery anchor
+              window.location = ('' + window.location).replace(/#[A-Za-z0-9_]*$/, '') + '#gallery'
+
+              activeCardNumber.set(card.number)
+            }}
+            >{card.seriesNumber}<img
+              class="button-season"
+              src="./img/UI/Season_{card.series.padStart(2, '0')}.svg"
+            /></button
+          >
+        {/each}
+      </span>
       {#each [...Array(3).keys()] as i}
         {#if i < artist.artistLinks.length}
           <span><a href={artist.artistLinks[i].link}>{artist.artistLinks[i].title}</a></span>
@@ -49,8 +66,7 @@
   <h3>Code</h3>
   <p>Website by Alecat. Built with Svelte.</p>
   <p>
-    Card effects based on <a href="https://poke-holo.simey.me/">poke-holo.simey.me</a>, with code adapted from the
-    Pokémon Cards Holographic effect in CSS
+    Card effects based on <a href="https://poke-holo.simey.me/">poke-holo.simey.me</a> - code adapted from the
     <a href="https://github.com/simeydotme/pokemon-cards-css">GitHub project</a>.
   </p>
 </main>
@@ -62,7 +78,7 @@
   }
   div.contributors {
     display: grid;
-    grid-template-columns: 1fr minmax(100px, 200px) minmax(60px, 100px) minmax(60px, 100px) minmax(60px, 100px) 1fr;
+    grid-template-columns: 1fr minmax(100px, 240px) minmax(60px, 100px) minmax(60px, 100px) minmax(60px, 100px) 1fr;
     gap: 0 16px;
     align-items: center;
     line-height: 1.5;
@@ -70,6 +86,16 @@
   }
   .contributors span:nth-child(6n + 2) {
     text-align: right;
+  }
+  button {
+    display: flex-inline;
+    margin: 2px 5px;
+    align-items: center;
+    padding: 0 2px;
+    overflow: hidden;
+  }
+  .button-season {
+    width: 1.2rem;
   }
   @media print {
     main {

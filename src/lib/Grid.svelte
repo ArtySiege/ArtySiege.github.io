@@ -1,3 +1,4 @@
+<!-- Copy of svelte-virtual/Grid, but with scrollToPosition set to ignore the header height -->
 <script context="module" lang="ts">
   import { scrollSpeed as __scrollSpeed, scrollStop as _scrollStop } from 'svelte-virtual/utils'
   const scrollStop = _scrollStop()

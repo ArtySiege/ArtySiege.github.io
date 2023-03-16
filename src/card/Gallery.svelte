@@ -4,7 +4,7 @@
   import Card from './Card.svelte'
   import CardContext from './Context.svelte'
   import type { CardFeatureType } from './interface'
-  import { cards, filteredCards, resetFilters } from '../stores/cards'
+  import { activeCardNumber, cards, filteredCards, resetFilters, scrollToIndex } from '../stores/cards'
   import { prefersReducedMotion } from '../stores/interaction'
   import GalleryFilters from '../GalleryFilters.svelte'
 
@@ -24,27 +24,29 @@
     } else {
       scale = 1
     }
-    gridWrapperHeight = Math.ceil($filteredCards.length / gridFitColumns) * cardHeight
+    // gridWrapperHeight = Math.ceil($filteredCards.length / gridFitColumns) * cardHeight
   }
 
+  let galleryRef: HTMLElement
+  let yCoordinate: number
+  // record the offset position when the gallery is mounted
   onMount(() => {
-    setTimeout(setGridWrapperHeight, 1000)
+    yCoordinate = galleryRef.getBoundingClientRect().top + window.scrollY
   })
 
-  $: gridWrapperWidth, userScale && setGridWrapperHeight()
+  $: gridWrapperWidth, userScale, gridWrapperHeight && setGridWrapperHeight()
 
-  // const scrollTop = () => {
-  //   if ($cards.length > 0 && $filteredCards.length === 0) {
-  //     scrollToPosition(-100)
-  //   }
-  // }
-  // $: $filteredCards.length && scrollTop()
-
-  let scrollToIndex: Grid['scrollToIndex']
-  let scrollToPosition: Grid['scrollToPosition']
+  // Hide the card description when scrolling past the gallery
+  const handleScroll = () => {
+    if ($activeCardNumber && window.scrollY > yCoordinate + gridWrapperHeight) {
+      activeCardNumber.set(undefined)
+    }
+  }
 </script>
 
-<main style="--gallery-scale: {scale * userScale}">
+<svelte:window bind:innerHeight={gridWrapperHeight} on:scroll={handleScroll} />
+
+<main style="--gallery-scale: {scale * userScale}" bind:this={galleryRef}>
   {#await cards.init()}
     <h2 id="gallery">Card Gallery</h2>
     loading...
@@ -53,8 +55,11 @@
       <h2 id="gallery">Card Gallery</h2>
       <GalleryFilters
         bind:userScale
-        scrollToRandom={() =>
-          scrollToIndex(~~(Math.random() * $filteredCards.length), $prefersReducedMotion ? 'auto' : 'smooth')}
+        scrollToRandom={() => {
+          const scrollToCard = ~~(Math.random() * $filteredCards.length)
+          $scrollToIndex(scrollToCard, $prefersReducedMotion ? 'auto' : 'smooth')
+          activeCardNumber.set($filteredCards[scrollToCard].number)
+        }}
       />
     </nav>
 
@@ -66,33 +71,23 @@
         {#key $filteredCards}
           <Grid
             width={cardWidth ? cardWidth * scale * userScale * gridFitColumns + 20 + 'px' : '100%'}
-            height={Math.min(window.innerHeight - 100, gridWrapperHeight)}
+            height={gridWrapperHeight - 100}
             itemWidth={cardWidth * scale * userScale}
             itemHeight={cardHeight * scale * userScale}
             itemCount={$filteredCards.length}
             marginLeft={10 * scale * userScale}
-            scrollPosition={-100}
-            bind:scrollToIndex
+            bind:scrollToIndex={$scrollToIndex}
           >
             <header slot="header">
-              <p>Click on a card for artist links and notes!</p>
-
               {#if $filteredCards.length === 0}
                 <p>No cards found</p>
-                <!-- display a button to clear the filters and search  -->
-                <button
-                  on:click={() => {
-                    resetFilters()
-                  }}>Clear filters</button
-                >
+                <button on:click={resetFilters}>Clear filters</button>
+              {:else}
+                <p>Click on a card for artist links and notes!</p>
               {/if}
             </header>
             <div slot="placeholder" let:style {style}>
-              <img
-                class="card_back"
-                src="./img/UI/CardBack.webp"
-                alt="The back of an Arty Siege card, showing the logo and splatters"
-              />
+              <img class="card_back" src="./img/UI/CardBack.webp" alt="" aria-hidden="true" />
             </div>
             <CardContext
               width={(744 + 71) / 2}

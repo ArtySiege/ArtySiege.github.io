@@ -1,6 +1,7 @@
 import { derived, Readable, writable } from 'svelte/store'
 import type { CardDetails, CardFeatureType } from '../card/interface'
 import Papa from 'papaparse'
+import type { Grid } from 'svelte-virtual'
 
 const createCardStore = () => {
   const { subscribe, set } = writable<Array<CardDetails>>([])
@@ -74,7 +75,10 @@ export const activeCard: Readable<CardDetails> = derived([cards, activeCardNumbe
   $activeCardNumber ? $cards[$activeCardNumber - 1] : undefined
 )
 
-type ArtistCredit = { cardNumbers: Array<number> } & Pick<CardDetails, 'artist' | 'artistAlias' | 'artistLinks'>
+type ArtistCredit = {
+  // cardNumbers: Array<number>;
+  cards: Array<CardDetails>
+} & Pick<CardDetails, 'artist' | 'artistAlias' | 'artistLinks'>
 
 export const uniqueArtists: Readable<Array<ArtistCredit>> = derived(cards, ($cards) => {
   const artists: Array<ArtistCredit> = []
@@ -86,12 +90,13 @@ export const uniqueArtists: Readable<Array<ArtistCredit>> = derived(cards, ($car
         artist: c.artist,
         artistAlias: c.artistAlias,
         artistLinks: c.artistLinks,
-        cardNumbers: [c.number],
+        cards: [c],
+        // cardNumbers: [c.number],
       })
-    }
-    if (seenArtists[c.artist]) {
+    } else if (seenArtists[c.artist]) {
       const entry = artists[seenArtists[c.artist]]
-      entry.cardNumbers = [...entry.cardNumbers, c.number]
+      entry.cards = [...entry.cards, c]
+      // entry.cardNumbers = [...entry.cardNumbers, c.number]
     }
   })
   artists.sort((a, b) => a.artist.localeCompare(b.artist))
@@ -122,4 +127,6 @@ const resetFilters = () => {
   season.set('')
 }
 
-export { filteredCards, activeCardNumber, cards, printing, search, displayFilter, season, resetFilters }
+let scrollToIndex = writable<Grid['scrollToIndex']>(undefined)
+
+export { filteredCards, activeCardNumber, cards, printing, search, displayFilter, season, resetFilters, scrollToIndex }

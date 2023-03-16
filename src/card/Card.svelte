@@ -110,13 +110,21 @@
   on:mousemove={onMouseMove}
   on:mouseleave={onMouseLeave}
   aria-label="{card.name} by {card.artist}"
+  id="card_{card.number}"
 >
   <div
     class="tilt"
     style="--mx:{mx}px; --my:{my}px; transform: rotateX({x}deg) rotateY({y}deg);--posx: {posx}%; --posy:{posy}%; --o: {o}"
     bind:this={tiltBox}
   >
-    <img aria-hidden="true" class="card_back" src="./img/UI/CardBack.webp" alt="" data-html2canvas-ignore />
+    <img
+      aria-hidden="true"
+      class="card_back"
+      src="./img/UI/CardBack.webp"
+      alt=""
+      data-html2canvas-ignore
+      loading="lazy"
+    />
     <div class="card_front">
       <div>
         <img
