@@ -1,5 +1,5 @@
 import { derived, Readable, writable } from 'svelte/store'
-import type { CardDetails, CardFeatureType, FeatureTypeFilterOptions } from '../card/interface'
+import type { CardDetails, CardFeatureType } from '../card/interface'
 import Papa from 'papaparse'
 
 const createCardStore = () => {
@@ -98,4 +98,28 @@ export const uniqueArtists: Readable<Array<ArtistCredit>> = derived(cards, ($car
   return artists
 })
 
-export { activeCardNumber, cards, printing }
+const search = writable('')
+const displayFilter = writable<CardFeatureType | 'All'>('All')
+const season = writable<string>('')
+
+const filteredCards: Readable<Array<CardDetails>> = derived(
+  [cards, search, displayFilter, season],
+  ([$cards, $search, $displayFilter, $season]) =>
+    $cards.filter(
+      (c) =>
+        c.img &&
+        ($season === '' || c.series === $season) &&
+        ($displayFilter === 'All' || c.featureType === $displayFilter) &&
+        ($search === '' ||
+          c.artist.toLowerCase().includes($search.toLowerCase()) ||
+          c.artistAlias.toLowerCase().includes($search.toLowerCase()))
+    )
+)
+
+const resetFilters = () => {
+  search.set('')
+  displayFilter.set('All')
+  season.set('')
+}
+
+export { filteredCards, activeCardNumber, cards, printing, search, displayFilter, season, resetFilters }

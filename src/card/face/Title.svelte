@@ -77,10 +77,27 @@
     background-position: var(--posx) var(--posy);
     background-size: 400% 200%;
   }
-  :global(card:hover) span.rare {
+  :global(card:not(.prefersReducedLighting):hover) span.common {
+    --space: 10%;
+    background-image: linear-gradient(#c6b6d9, #5e3ce6, #423896), linear-gradient(#c6b6d9aa, #5e3ce6aa, #423896aa),
+      repeating-linear-gradient(
+        -63deg,
+        rgba(255, 119, 115, 1) calc(var(--space) * 1),
+        rgba(255, 237, 95, 1) calc(var(--space) * 2),
+        rgba(168, 255, 95, 1) calc(var(--space) * 3),
+        rgba(131, 255, 247, 1) calc(var(--space) * 4),
+        rgba(120, 148, 255, 1) calc(var(--space) * 5),
+        rgb(216, 117, 255, 1) calc(var(--space) * 6),
+        rgb(255, 119, 115, 1) calc(var(--space) * 7)
+      );
+    background-position: var(--posx) var(--posy);
+    background-size: 400% 200%;
+    background-blend-mode: color-dodge, normal, multiply;
+  }
+  :global(card:not(.prefersReducedLighting):hover) span.rare {
     --space: 10%;
     background-image: repeating-linear-gradient(-63deg, #ffff99, #daa520, #ffff99 50%),
-      repeating-linear-gradient(-63deg, #ffff99aa, #daa520aa, #ffff99aa 50%),
+      repeating-linear-gradient(-63deg, #ffff99cc, #daa520cc, #ffff99cc 50%),
       repeating-linear-gradient(
         -63deg,
         rgba(255, 119, 115, 1) calc(var(--space) * 1),

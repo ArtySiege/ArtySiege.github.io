@@ -2,7 +2,7 @@
   import { cards, uniqueArtists } from './stores/cards'
 </script>
 
-<about>
+<about id="about">
   <section>
     <div class="card mini">
       A unique Tableturf deck for you to print at home, currently featuring {$cards.filter((c) => !!c.img).length} cards
@@ -70,7 +70,7 @@
     max-width: 200px;
   }
   section {
-    padding: calc(var(--padding) * 2);
+    padding: 0 calc(var(--padding) * 2);
     display: flex;
     align-items: center;
     justify-content: start;

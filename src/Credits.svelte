@@ -2,7 +2,7 @@
   import { uniqueArtists } from './stores/cards'
 </script>
 
-<main>
+<main id="credits">
   <h2>Credits</h2>
   <h3>
     All art remains property of the respective artists. Files on this site are provided for personal use only - do not

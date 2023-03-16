@@ -102,33 +102,38 @@
 <card
   class:active
   class:pagebreak
+  class:prefersReducedLighting={$prefersReducedLighting}
   bind:this={ref}
   {style}
   on:click={onClick}
   on:keydown={() => {}}
   on:mousemove={onMouseMove}
   on:mouseleave={onMouseLeave}
+  aria-label="{card.name} by {card.artist}"
 >
   <div
     class="tilt"
     style="--mx:{mx}px; --my:{my}px; transform: rotateX({x}deg) rotateY({y}deg);--posx: {posx}%; --posy:{posy}%; --o: {o}"
     bind:this={tiltBox}
   >
-    <img class="card_back" src="./img/UI/CardBack.webp" alt="The back of an Arty Siege card" data-html2canvas-ignore />
+    <img aria-hidden="true" class="card_back" src="./img/UI/CardBack.webp" alt="" data-html2canvas-ignore />
     <div class="card_front">
       <div>
         <img
           class="rarity_back"
           src={card_front_background}
           aria-hidden="true"
-          alt="Background for {card.rarity} card"
+          alt=""
           data-html2canvas-ignore
+          on:load={imageLoader}
         />
       </div>
-      {#if !$prefersReducedLighting}
-        <Holo />
+      {#if !loading}
+        {#if !$prefersReducedLighting}
+          <Holo />
+        {/if}
+        <Title />
       {/if}
-      <Title />
     </div>
     {#if !$prefersReducedLighting}
       <Glare />

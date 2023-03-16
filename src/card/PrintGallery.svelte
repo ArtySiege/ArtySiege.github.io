@@ -1,6 +1,6 @@
 <script lang="ts">
   import { init } from 'svelte/internal'
-  import { cards, printing } from '../stores/cards'
+  import { cards, printing, filteredCards } from '../stores/cards'
   import Card from './Card.svelte'
   import CardContext from './Context.svelte'
   import type { CardDetails } from './interface'
@@ -10,7 +10,7 @@
   let cardGroups: Array<Array<CardDetails>> = []
   $: {
     cardGroups = []
-    const printCards = $cards.filter((c) => !!c.artist)
+    const printCards = $filteredCards.filter((c) => !!c.artist)
     while (printCards.length > 0) {
       cardGroups.push(printCards.splice(0, 9))
     }

@@ -13,12 +13,12 @@
   <div class:showNav>
     <button on:click={() => (showNav = !showNav)}><span /><span /><span /></button>
     <ul class:showNav>
-      <li>About</li>
-      <li>Gallery</li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#gallery">Gallery</a></li>
       <li class="print"><button on:click={handlePrint}>Print</button></li>
       <li>What's Next</li>
       <li>How to Play</li>
-      <li>Credits</li>
+      <li><a href="#credits">Credits</a></li>
     </ul>
   </div>
 </nav>
@@ -31,7 +31,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* position: sticky; */
+    position: sticky;
     top: 0;
     z-index: 100;
     /* height: 60px; */
@@ -106,7 +106,8 @@
   @media print {
     nav {
     }
-    ul {
+    ul,
+    .showNav ul {
       flex-direction: column;
       display: none;
     }

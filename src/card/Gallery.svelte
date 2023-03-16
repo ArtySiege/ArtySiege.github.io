@@ -1,14 +1,12 @@
 <script lang="ts">
-  import { onMount, select_value } from 'svelte/internal'
-  import { Grid } from 'svelte-virtual'
+  import { onMount } from 'svelte/internal'
+  import Grid from '../lib/Grid.svelte'
   import Card from './Card.svelte'
   import CardContext from './Context.svelte'
-  import { CardDetails, CardFeatureType, FeatureTypeFilterOptions } from './interface'
-  import { prefersReducedMotion, prefersReducedLighting } from '../stores/interaction'
-  import { cards } from '../stores/cards'
-
-  let displayFilter: CardFeatureType | 'All' = 'All'
-  let search = ''
+  import type { CardFeatureType } from './interface'
+  import { cards, filteredCards, resetFilters } from '../stores/cards'
+  import { prefersReducedMotion } from '../stores/interaction'
+  import GalleryFilters from '../GalleryFilters.svelte'
 
   let gridWrapperWidth = 1
   const cardWidth = (744 + 71) / 2
@@ -18,151 +16,98 @@
   let gridWrapperHeight = window.innerHeight
   let scale = 1
 
-  onMount(() => {
-    setTimeout(() => {
-      gridFitColumns = Math.floor(gridWrapperWidth / (cardWidth * userScale))
-      if (gridFitColumns < 1) {
-        gridFitColumns = 1
-        scale = gridWrapperWidth / (cardWidth * userScale)
-      } else {
-        scale = 1
-      }
-      gridWrapperHeight = Math.ceil(filteredCards.length / gridFitColumns) * cardHeight
-    }, 1000)
-  })
-
-  $: {
-    gridFitColumns = Math.floor(gridWrapperWidth / (cardWidth * userScale))
+  const setGridWrapperHeight = () => {
+    gridFitColumns = Math.floor((gridWrapperWidth - 20) / (cardWidth * userScale))
     if (gridFitColumns < 1) {
       gridFitColumns = 1
-      scale = gridWrapperWidth / (cardWidth * userScale)
+      scale = (gridWrapperWidth - 20) / (cardWidth * userScale)
     } else {
       scale = 1
     }
-    gridWrapperHeight = Math.ceil(filteredCards.length / gridFitColumns) * cardHeight
+    gridWrapperHeight = Math.ceil($filteredCards.length / gridFitColumns) * cardHeight
   }
 
-  const setDisplayFilter = (filter: string) => {
-    displayFilter = filter as CardFeatureType | 'All'
-  }
-  $: filteredCards = $cards.filter(
-    (c) =>
-      c.img &&
-      (displayFilter === 'All' || c.featureType === displayFilter) &&
-      (search === '' ||
-        c.artist.toLowerCase().includes(search.toLowerCase()) ||
-        c.artistAlias.toLowerCase().includes(search.toLowerCase()))
-  )
+  onMount(() => {
+    setTimeout(setGridWrapperHeight, 1000)
+  })
 
-  let scrollToIndex
+  $: gridWrapperWidth, userScale && setGridWrapperHeight()
+
+  // const scrollTop = () => {
+  //   if ($cards.length > 0 && $filteredCards.length === 0) {
+  //     scrollToPosition(-100)
+  //   }
+  // }
+  // $: $filteredCards.length && scrollTop()
+
+  let scrollToIndex: Grid['scrollToIndex']
+  let scrollToPosition: Grid['scrollToPosition']
 </script>
 
 <main style="--gallery-scale: {scale * userScale}">
-  <h2>Card Gallery</h2>
   {#await cards.init()}
+    <h2 id="gallery">Card Gallery</h2>
     loading...
   {:then}
-    <div class="filters">
-      <h3>Search by artist:</h3>
-      <input bind:value={search} />
+    <nav>
+      <h2 id="gallery">Card Gallery</h2>
+      <GalleryFilters
+        bind:userScale
+        scrollToRandom={() =>
+          scrollToIndex(~~(Math.random() * $filteredCards.length), $prefersReducedMotion ? 'auto' : 'smooth')}
+      />
+    </nav>
 
-      <h3>Filter by card type:</h3>
-      <div class="featureTypeSelect">
-        <select bind:value={displayFilter}>
-          <option value="All">All</option>
-          {#each FeatureTypeFilterOptions as featureType}
-            {#if typeof featureType === 'string'}
-              <option value={featureType}>{featureType}</option>
-            {:else}
-              {#each Object.keys(featureType) as key}
-                <!-- <optgroup label={key}> -->
-                {#each featureType[key] as subType}
-                  <option value={subType}>{subType}</option>
-                {/each}
-                <!-- </optgroup> -->
-              {/each}
-            {/if}
-          {/each}
-        </select>
-      </div>
-
-      <div class="featureTypeButton">
-        <button
-          on:click={() => setDisplayFilter('All')}
-          class="featureTypeButton"
-          class:selected={'All' === displayFilter}>All</button
-        >
-        {#each FeatureTypeFilterOptions as featureType}
-          {#if typeof featureType === 'string'}
-            <button
-              on:click={() => setDisplayFilter(featureType)}
-              class="featureTypeButton"
-              class:selected={featureType === displayFilter}>{featureType}</button
-            >
-          {:else}
-            {#each Object.keys(featureType) as key}
-              <!-- <optgroup label={key}> -->
-              {#each featureType[key] as subType}
-                <button
-                  on:click={() => setDisplayFilter(subType)}
-                  class="featureTypeButton"
-                  class:selected={subType === displayFilter}>{subType}</button
-                >
-              {/each}
-              <!-- </optgroup> -->
-            {/each}
-          {/if}
-        {/each}
-      </div>
-      <div>
-        <button
-          on:click={() =>
-            scrollToIndex(~~(Math.random() * filteredCards.length), $prefersReducedMotion ? 'auto' : 'smooth')}
-        >
-          Jump to a random card!
-        </button>
-      </div>
-      <div>
-        <input type="range" min=".25" max="1" bind:value={userScale} step="0.05" />
-        <span>Disable Card Motion</span><input type="checkbox" bind:checked={$prefersReducedMotion} />
-        <span>Disable Lighting Effects</span><input type="checkbox" bind:checked={$prefersReducedLighting} />
-      </div>
-    </div>
-    <div class="grid_wrapper" bind:clientWidth={gridWrapperWidth}>
-      {#key gridFitColumns + displayFilter + search}
-        <Grid
-          width={cardWidth ? cardWidth * userScale * gridFitColumns + 20 + 'px' : '100%'}
-          height={Math.min(window.innerHeight, gridWrapperHeight)}
-          itemWidth={cardWidth * scale * userScale}
-          itemHeight={cardHeight * scale * userScale}
-          itemCount={filteredCards.length}
-          marginLeft={10 * scale * userScale}
-          bind:scrollToIndex
-        >
-          <p slot="header">Click on a card for artist links and notes!</p>
-          <div slot="placeholder" let:style {style}>
-            <img
-              class="card_back"
-              src="./img/UI/CardBack.webp"
-              alt="The back of an Arty Siege card, showing the logo and splatters"
-            />
-          </div>
-          <CardContext
-            width={(744 + 71) / 2}
-            height={(1039 + 71) / 2}
-            units="px"
-            slot="item"
-            let:style
-            let:index
-            cardDetails={filteredCards[index]}
+    <div class="grid-wrapper" bind:clientWidth={gridWrapperWidth}>
+      <div
+        class="grid-wrapper-inner"
+        style="--width: {cardWidth ? cardWidth * scale * userScale * gridFitColumns + 20 + 'px' : '100%'}"
+      >
+        {#key $filteredCards}
+          <Grid
+            width={cardWidth ? cardWidth * scale * userScale * gridFitColumns + 20 + 'px' : '100%'}
+            height={Math.min(window.innerHeight - 100, gridWrapperHeight)}
+            itemWidth={cardWidth * scale * userScale}
+            itemHeight={cardHeight * scale * userScale}
+            itemCount={$filteredCards.length}
+            marginLeft={10 * scale * userScale}
+            scrollPosition={-100}
+            bind:scrollToIndex
           >
-            <Card {style} />
-          </CardContext>
-          <div slot="footer" style="height: 100px">
-            <!-- spacer to allow extra scroll when the artist notes are open -->
-          </div>
-        </Grid>
-      {/key}
+            <header slot="header">
+              <p>Click on a card for artist links and notes!</p>
+
+              {#if $filteredCards.length === 0}
+                <p>No cards found</p>
+                <!-- display a button to clear the filters and search  -->
+                <button
+                  on:click={() => {
+                    resetFilters()
+                  }}>Clear filters</button
+                >
+              {/if}
+            </header>
+            <div slot="placeholder" let:style {style}>
+              <img
+                class="card_back"
+                src="./img/UI/CardBack.webp"
+                alt="The back of an Arty Siege card, showing the logo and splatters"
+              />
+            </div>
+            <CardContext
+              width={(744 + 71) / 2}
+              height={(1039 + 71) / 2}
+              units="px"
+              slot="item"
+              let:style
+              let:index
+              cardDetails={$filteredCards[index]}
+            >
+              <Card {style} />
+            </CardContext>
+          </Grid>
+        {/key}
+      </div>
     </div>
   {/await}
 </main>
@@ -170,28 +115,42 @@
 <style>
   main {
     text-align: center;
-    /* padding: 1em; */
+    padding: 1em;
     /* margin: 0 auto; */
   }
-  .featureTypeButton {
-    display: none;
-    gap: 0 0.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .grid_wrapper {
+  .grid-wrapper {
+    color: white;
     display: inline-flex;
     justify-content: center;
-    width: 100vw;
+    width: 100%;
     transform-origin: top;
   }
-  :global(.grid_wrapper) > div {
+  .grid-wrapper-inner > :global(div):first-child {
+    /* The grid */
+    overflow-x: hidden !important;
     margin: auto;
-    /* overflow-x: hidden; */
-    padding-left: calc(var(--padding) * var(--gallery-scale)) !important;
+    position: relative;
+    /* padding-left: calc(var(--padding) * var(--gallery-scale)) !important; */
   }
-  .featureTypeButton.selected {
-    color: blue;
+  .grid-wrapper-inner {
+    background: repeating-linear-gradient(45deg, #606dbc22, #606dbc22 30px, #46529822 30px, #46529822 60px);
+    border-radius: 10px;
+    width: var(--width);
+    position: relative;
+  }
+  .grid-wrapper-inner::after {
+    content: '';
+    border-radius: 10px;
+    margin: auto;
+    position: absolute;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: inset 0 0 10px #000000;
+    width: 100%;
+    mix-blend-mode: multiply;
   }
   .card_back {
     position: absolute;
@@ -205,12 +164,6 @@
   @media (min-width: 640px) {
     main {
       max-width: none;
-    }
-    .featureTypeButton {
-      display: flex;
-    }
-    .featureTypeSelect {
-      display: none;
     }
   }
   @media print {
