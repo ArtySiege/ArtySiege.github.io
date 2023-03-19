@@ -1,5 +1,12 @@
-<script>
+<script lang="ts">
   import { filteredCards, uniqueArtists, scrollToIndex, activeCardNumber } from './stores/cards'
+  const scrollToCard = (cardNumber: number) => {
+    $scrollToIndex($filteredCards.findIndex((c) => c.number === cardNumber))
+    // navigate to the gallery anchor
+    window.location = ('' + window.location).replace(/#[A-Za-z0-9_]*$/, '') + '#gallery'
+    window.scrollTo(0, window.scrollY + 110)
+    activeCardNumber.set(cardNumber)
+  }
 </script>
 
 <main id="credits">
@@ -16,19 +23,10 @@
       <span
         >{artist.artist}
         {#each artist.cards as card}
-          <button
-            on:click={() => {
-              $scrollToIndex($filteredCards.findIndex((c) => c.number === card.number))
-              // navigate to the gallery anchor
-              window.location = ('' + window.location).replace(/#[A-Za-z0-9_]*$/, '') + '#gallery'
-
-              activeCardNumber.set(card.number)
-            }}
-            >{card.seriesNumber}<img
-              class="button-season"
-              src="./img/UI/Season_{card.series.padStart(2, '0')}.svg"
-            /></button
-          >
+          <button on:click={() => scrollToCard(card.number)}>
+            {card.seriesNumber}
+            <img class="button-season" src="./img/UI/Season_{card.series.padStart(2, '0')}.svg" />
+          </button>
         {/each}
       </span>
       {#each [...Array(3).keys()] as i}

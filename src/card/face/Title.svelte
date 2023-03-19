@@ -62,7 +62,7 @@
   header span {
     background-clip: text;
     -webkit-background-clip: text;
-    background-image: linear-gradient(#c6b6d9, #5e3ce6, #423896);
+    background-image: linear-gradient(#f6c4ff, #bd82ff, #5e3ce6);
     color: transparent;
     filter: var(--dropShadow);
     letter-spacing: calc(var(--gallery-scale) * 1px);
@@ -79,7 +79,7 @@
   }
   :global(card:not(.prefersReducedLighting):hover) span.common {
     --space: 10%;
-    background-image: linear-gradient(#c6b6d9, #5e3ce6, #423896), linear-gradient(#c6b6d9aa, #5e3ce6aa, #423896aa),
+    background-image: linear-gradient(#f6c4ff, #bd82ff, #5e3ce6), linear-gradient(#c6b6d9ee, #5e3ce6ee, #423896ee),
       repeating-linear-gradient(
         -63deg,
         rgba(255, 119, 115, 1) calc(var(--space) * 1),
@@ -92,7 +92,7 @@
       );
     background-position: var(--posx) var(--posy);
     background-size: 400% 200%;
-    background-blend-mode: color-dodge, normal, multiply;
+    background-blend-mode: overlay, normal, multiply;
   }
   :global(card:not(.prefersReducedLighting):hover) span.rare {
     --space: 10%;

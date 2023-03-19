@@ -4,6 +4,7 @@
   let showNav = false
   const handlePrint = () => {
     printing.set(true)
+    window.dataLayer.push({ event: 'arty__print_nav_clicked' })
     setTimeout(window.print, 500)
   }
 </script>

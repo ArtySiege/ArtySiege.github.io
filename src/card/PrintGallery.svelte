@@ -6,6 +6,7 @@
   import type { CardDetails } from './interface'
   window.addEventListener('beforeprint', (event) => {
     printing.set(true)
+    window.dataLayer.push({ event: 'arty__print_dialog_opened' })
   })
   let cardGroups: Array<Array<CardDetails>> = []
   $: {

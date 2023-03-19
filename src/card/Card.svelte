@@ -3,11 +3,18 @@
   import Glare from './face/Glare.svelte'
   import Holo from './face/Holo.svelte'
   import { prefersReducedMotion, prefersReducedLighting } from '../stores/interaction'
-  import { orientation, resetBaseOrientation } from '../stores/orientation'
+  import { orientation, resetBaseOrientation, isSafari } from '../stores/orientation'
   import { activeCardNumber } from '../stores/cards'
   import Title from './face/Title.svelte'
   const card = getCardContext()
   $: active = $activeCardNumber === card.number
+  $: {
+    if (active) {
+      o = 1
+    } else {
+      o = 0
+    }
+  }
   export let style
   export let pagebreak = false
   export let animate = true
@@ -37,19 +44,19 @@
   const clamp = (num, min = -20, max = 20) => Math.min(Math.max(num, min), max)
 
   const orientate = (e) => {
-    const xDeg = e.relative.gamma
-    const yDeg = e.relative.beta
+    const xDeg = e.relative.beta
+    const yDeg = e.relative.gamma
 
     const max = { x: 16, y: 23 }
     x = clamp(xDeg, -max.x, max.x)
     y = clamp(yDeg, -max.y, max.y)
+    posx = (xDeg / max.x) * 10 + 50
+    posy = (yDeg / max.y) * 10 + 50
   }
 
-  orientation.subscribe((sub) => {
-    if (active) {
-      orientate($orientation)
-    }
-  })
+  $: proxyOrientation = active ? orientation : null
+
+  $: proxyOrientation && orientate($orientation)
 
   function transformElement(mouseX, mouseY) {
     let box = tiltBox.getBoundingClientRect()

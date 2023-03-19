@@ -23,7 +23,7 @@
   {#if $activeCard}
     <detail>
       <button on:click={closeDetail}>✕</button>
-      <h3>{$activeCard.name} by {$activeCard.artist}</h3>
+      <h3>{$activeCard.seriesNumber}/{$activeCard.seriesTotal}: {$activeCard.name} by {$activeCard.artist}</h3>
       <div>
         {#if $activeCard.artistAlias}
           <span>
