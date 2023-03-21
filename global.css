@@ -6,25 +6,6 @@ html, body {
 	scroll-padding-top: 80px;
 }
 
-@media print {
-    * {
-        -webkit-print-color-adjust: exact;
-		print-color-adjust: exact;
-    }
-	body {
-		background: transparent !important;
-		font-size: 16px;
-	}
-	html, body {
-		scroll-padding-top: 0;
-
-	}
-}
-@page {
-	size: 210mm 297mm;
-	margin: 0;
-}
-
 
 body {
 	color: #111;
