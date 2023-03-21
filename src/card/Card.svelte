@@ -134,8 +134,10 @@
     />
     <div class="card_front">
       <div>
+        <!-- loading=lazy must appear before src -->
         <img
           class="rarity_back"
+          loading="lazy"
           src={card_front_background}
           aria-hidden="true"
           alt=""
@@ -220,33 +222,5 @@
   }
   .active {
     filter: drop-shadow(0px 0px calc(10px * var(--gallery-scale)) goldenrod);
-  }
-  @media print {
-    card {
-      width: 69mm;
-      height: 94mm;
-      clip-path: inset(3mm);
-      --gallery-scale: 1;
-    }
-    .tilt {
-      clip-path: unset;
-    }
-    .card_back {
-      display: none;
-    }
-    .card_back,
-    .card_front {
-      clip-path: none;
-    }
-    card::before {
-      content: '';
-      position: absolute;
-      top: calc(3mm - 0.5px);
-      left: calc(3mm - 0.5px);
-      width: 63mm;
-      height: 88mm;
-      border: 1px solid grey;
-      border-radius: 3mm;
-    }
   }
 </style>

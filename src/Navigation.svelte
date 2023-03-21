@@ -1,12 +1,5 @@
 <script>
-  import { printing } from './stores/cards'
-
   let showNav = false
-  const handlePrint = () => {
-    printing.set(true)
-    window.dataLayer.push({ event: 'arty__print_nav_clicked' })
-    setTimeout(window.print, 500)
-  }
 </script>
 
 <nav>
@@ -16,9 +9,9 @@
     <ul class:showNav>
       <li><a href="#about">About</a></li>
       <li><a href="#gallery">Gallery</a></li>
-      <li class="print"><button on:click={handlePrint}>Print</button></li>
-      <li>What's Next</li>
-      <li>How to Play</li>
+      <li><a href="#print">Print</a></li>
+      <li><a href="#whats-next">What's Next</a></li>
+      <li><a href="#how-to-play">How to Play</a></li>
       <li><a href="#credits">Credits</a></li>
     </ul>
   </div>
@@ -106,6 +99,7 @@
 
   @media print {
     nav {
+      position: relative;
     }
     ul,
     .showNav ul {

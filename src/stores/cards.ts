@@ -114,9 +114,7 @@ const filteredCards: Readable<Array<CardDetails>> = derived(
         c.img &&
         ($season === '' || c.series === $season) &&
         ($displayFilter === 'All' || c.featureType === $displayFilter) &&
-        ($searchCard === '' ||
-          c.artist.toLowerCase().includes($searchCard.toLowerCase()) ||
-          c.artistAlias.toLowerCase().includes($searchCard.toLowerCase())) &&
+        ($searchCard === '' || c.name.toLowerCase().includes($searchCard.toLowerCase())) &&
         ($search === '' ||
           c.artist.toLowerCase().includes($search.toLowerCase()) ||
           c.artistAlias.toLowerCase().includes($search.toLowerCase()))

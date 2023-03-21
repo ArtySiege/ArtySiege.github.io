@@ -62,9 +62,9 @@
   header span {
     background-clip: text;
     -webkit-background-clip: text;
-    background-image: linear-gradient(#f6c4ff, #bd82ff, #5e3ce6);
+    background-image: linear-gradient(#b4a6fe, #6600ff 50%, #3715aa);
     color: transparent;
-    filter: var(--dropShadow);
+    -webkit-text-fill-color: transparent;
     letter-spacing: calc(var(--gallery-scale) * 1px);
   }
   span.fresh {
@@ -79,7 +79,8 @@
   }
   :global(card:not(.prefersReducedLighting):hover) span.common {
     --space: 10%;
-    background-image: linear-gradient(#f6c4ff, #bd82ff, #5e3ce6), linear-gradient(#c6b6d9ee, #5e3ce6ee, #423896ee),
+    background-image: linear-gradient(#b4a6fe 10%, #6600ff 50%, #3715aa),
+      linear-gradient(#c6b6d9ee, #5e3ce6ee, #423896ee),
       repeating-linear-gradient(
         -63deg,
         rgba(255, 119, 115, 1) calc(var(--space) * 1),
@@ -120,29 +121,5 @@
     width: 96.2%;
     left: 1.226993865%;
     top: 4%;
-  }
-
-  @media print {
-    header {
-      font-size: 5.42mm;
-      line-height: 6.44mm;
-    }
-    header span,
-    svg {
-      letter-spacing: 0.1694915254mm;
-    }
-    .singleLine header {
-      margin-top: -1.5mm;
-    }
-    svg {
-      font-size: 5.42mm;
-      letter-spacing: 0.1694915254mm;
-    }
-    text.stroke {
-      stroke-width: 1.5mm;
-    }
-    text.stroke-small {
-      stroke-width: 0.9mm;
-    }
   }
 </style>

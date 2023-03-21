@@ -7,7 +7,8 @@
   import Titles from './card/Titles.svelte'
   import Credits from './Credits.svelte'
   import Navigation from './Navigation.svelte'
-  import { activeCard, activeCardNumber, cards, printing } from './stores/cards'
+  import { activeCard, activeCardNumber, cards } from './stores/cards'
+  import WhatsNext from './WhatsNext.svelte'
   const closeDetail = () => {
     activeCardNumber.set(undefined)
   }
@@ -20,6 +21,8 @@
   <!-- <Titles /> -->
   <Gallery />
   <PrintGallery />
+  <WhatsNext />
+  <Credits />
   {#if $activeCard}
     <detail>
       <button on:click={closeDetail}>✕</button>
@@ -44,7 +47,6 @@
       {/if}
     </detail>
   {/if}
-  <Credits />
 </main>
 
 <style>
@@ -61,7 +63,7 @@
     max-height: 80vh;
     color: white;
     background: rgba(0, 0, 0, 0.8);
-    padding: var(--padding);
+    padding: 0 calc(4 * var(--padding));
     box-sizing: border-box;
   }
 

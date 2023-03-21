@@ -3,7 +3,7 @@
   const scrollToCard = (cardNumber: number) => {
     $scrollToIndex($filteredCards.findIndex((c) => c.number === cardNumber))
     // navigate to the gallery anchor
-    window.location = ('' + window.location).replace(/#[A-Za-z0-9_]*$/, '') + '#gallery'
+    window.location = ('' + window.location).replace(/#[A-Za-z0-9_-]*$/, '') + '#gallery'
     window.scrollTo(0, window.scrollY + 110)
     activeCardNumber.set(cardNumber)
   }
@@ -31,9 +31,9 @@
       </span>
       {#each [...Array(3).keys()] as i}
         {#if i < artist.artistLinks.length}
-          <span><a href={artist.artistLinks[i].link}>{artist.artistLinks[i].title}</a></span>
+          <span class="link"><a href={artist.artistLinks[i].link}>{artist.artistLinks[i].title}</a></span>
         {:else}
-          <span />
+          <span class="link" />
         {/if}
       {/each}
       <span />
@@ -55,11 +55,6 @@
     <span>SpongeBev</span> •
     <span>Palette</span>
   </div>
-  <p>
-    We did actually <a href="https://twitter.com/alecatmew/status/1578373911892226048">playtest IRL tableturf</a>, but
-    since the game now offers multiplayer the focus of the project has pivoted away from making it a practical Print
-    &amp; Play game.
-  </p>
 
   <h3>Code</h3>
   <p>Website by Alecat. Built with Svelte.</p>
@@ -98,6 +93,24 @@
   @media print {
     main {
       padding: 10mm;
+    }
+    button {
+      display: none;
+    }
+    .link {
+      display: none;
+    }
+    div.contributors {
+      display: grid;
+      grid-template-columns: 1fr minmax(100px, 240px) 0 0 minmax(100px, 240px) 0 0 minmax(100px, 240px) 1fr;
+      line-height: 1;
+      grid-auto-rows: 2rem;
+    }
+    .contributors span:nth-child(18n + 8) {
+      text-align: center;
+    }
+    .contributors span:nth-child(18n + 14) {
+      text-align: left;
     }
   }
 </style>

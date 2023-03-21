@@ -5,6 +5,14 @@
   const card = getCardContext()
   const ratio = Math.min(1, card.headerScale)
   let gradientSize = 392 / card.headerScale
+
+  // After creating the SVGs, export them from the page using the SVG Export chrome browser plugin
+  // The files are usable from a fresh import, but to reduce the filesize, the <defs> block can be
+  // removed and the &quot; escaped characters can be removed or replaced with '
+  // The <title> block could also be removed; it's only supplied to get the right filename on export.
+
+  // Better common colours for screen preview
+  // background-image: linear-gradient(#b4a6fe, #6600ff, #3715aa);
 </script>
 
 <svg width={392 / ratio} height={card.nameParts.length > 1 ? '96' : '88'}>
@@ -26,14 +34,12 @@
       y1="{0}px"
       y2="{(392 * (1 / card.headerScale)) / 20}px"
     >
-      <!-- background-image: repeating-linear-gradient(-63deg, #ffff99, #daa520, #ffff99 50%); -->
       <stop offset="0%" stop-color="#ffff99" stop-opacity="1" />
       <stop offset="55%" stop-color="#daa520" stop-opacity="1" />
       <stop offset="90%" stop-color="#ffff99" stop-opacity="1" />
     </linearGradient>
   {/if}
   {#if card.rarity === 'fresh'}
-    <!-- background-image: repeating-linear-gradient(-63deg,#ffff99,#cc3399,#33ffcc,#ffff99 50%); -->
     <linearGradient
       id="gradient-{card.number}"
       gradientTransform="rotate(20)"
@@ -43,7 +49,6 @@
       y1="{0}px"
       y2="{(392 * (1 / card.headerScale)) / 20}px"
     >
-      <!-- background-image: repeating-linear-gradient(-63deg, #ffff99, #daa520, #ffff99 50%); -->
       <stop offset="0%" stop-color=" #ffff99" stop-opacity="1" />
       <stop offset="30%" stop-color=" #f2707a" stop-opacity="1" />
       <stop offset="50%" stop-color="#cc3399" stop-opacity="1" />
