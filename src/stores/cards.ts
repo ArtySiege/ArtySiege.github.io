@@ -66,8 +66,6 @@ const createCardStore = () => {
   }
 }
 
-const printing = writable<boolean>(false)
-
 const activeCardNumber = writable<number | undefined>()
 const cards = createCardStore()
 
@@ -103,18 +101,22 @@ export const uniqueArtists: Readable<Array<ArtistCredit>> = derived(cards, ($car
   return artists
 })
 
+const searchCard = writable('')
 const search = writable('')
 const displayFilter = writable<CardFeatureType | 'All'>('All')
 const season = writable<string>('')
 
 const filteredCards: Readable<Array<CardDetails>> = derived(
-  [cards, search, displayFilter, season],
-  ([$cards, $search, $displayFilter, $season]) =>
+  [cards, searchCard, search, displayFilter, season],
+  ([$cards, $searchCard, $search, $displayFilter, $season]) =>
     $cards.filter(
       (c) =>
         c.img &&
         ($season === '' || c.series === $season) &&
         ($displayFilter === 'All' || c.featureType === $displayFilter) &&
+        ($searchCard === '' ||
+          c.artist.toLowerCase().includes($searchCard.toLowerCase()) ||
+          c.artistAlias.toLowerCase().includes($searchCard.toLowerCase())) &&
         ($search === '' ||
           c.artist.toLowerCase().includes($search.toLowerCase()) ||
           c.artistAlias.toLowerCase().includes($search.toLowerCase()))
@@ -122,6 +124,7 @@ const filteredCards: Readable<Array<CardDetails>> = derived(
 )
 
 const resetFilters = () => {
+  searchCard.set('')
   search.set('')
   displayFilter.set('All')
   season.set('')
@@ -129,4 +132,14 @@ const resetFilters = () => {
 
 let scrollToIndex = writable<Grid['scrollToIndex']>(undefined)
 
-export { filteredCards, activeCardNumber, cards, printing, search, displayFilter, season, resetFilters, scrollToIndex }
+export {
+  filteredCards,
+  activeCardNumber,
+  cards,
+  searchCard,
+  search,
+  displayFilter,
+  season,
+  resetFilters,
+  scrollToIndex,
+}

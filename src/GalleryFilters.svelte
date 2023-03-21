@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { filteredCards, displayFilter, search, season } from './stores/cards'
+  import { filteredCards, displayFilter, searchCard, search, season } from './stores/cards'
   import { CardFeatureType, FeatureTypeFilterOptions } from './card/interface'
   import { prefersReducedMotion, prefersReducedLighting } from './stores/interaction'
   export let userScale: number
@@ -20,6 +20,10 @@
 
   {#if panelOpen}
     <div>
+      <div class="display-option-row">
+        <label for="cardSearch">Search by card name</label>
+        <input id="cardSearch" type="text" bind:value={$searchCard} />
+      </div>
       <div class="display-option-row">
         <label for="artistSearch">Search by artist</label>
         <input id="artistSearch" type="text" bind:value={$search} />
