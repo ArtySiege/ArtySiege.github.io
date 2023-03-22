@@ -8,14 +8,24 @@
   import Credits from './Credits.svelte'
   import Navigation from './Navigation.svelte'
   import { activeCard, activeCardNumber, cards } from './stores/cards'
+  import { lang } from './stores/lang'
   import { galleryWidth } from './stores/interaction'
   import WhatsNext from './WhatsNext.svelte'
   const closeDetail = () => {
     activeCardNumber.set(undefined)
   }
+
+  let splatoon1Font = 'Splatoon1'
+  $: {
+    if ($lang === 'zh_CN') {
+      splatoon1Font = 'Splatoon1, Splatoon1_zh_CN, DFPZongYiW9-GB'
+    } else {
+      splatoon1Font = 'Splatoon1'
+    }
+  }
 </script>
 
-<main style="--gallery-width:{$galleryWidth}px">
+<main style="--gallery-width:{$galleryWidth}px;--splatoon1-font-family:{splatoon1Font}">
   <Navigation />
   <About />
   <!-- <BoosterGroup /> -->

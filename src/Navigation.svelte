@@ -58,14 +58,6 @@
   li {
     margin: 0 calc(var(--padding) * 2);
   }
-  li button {
-    background: transparent;
-    border: none;
-    padding: 0;
-    color: white;
-    cursor: pointer;
-    margin-bottom: 0;
-  }
 
   @media (max-width: 780px) {
     nav {

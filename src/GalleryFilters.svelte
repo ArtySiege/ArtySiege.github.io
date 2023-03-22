@@ -113,6 +113,14 @@
           <option value="es_US">Español (MX)</option>
           <option value="fr_EU">Français</option>
           <option value="fr_US">Français (CA)</option>
+          <option value="de_EU">Deutsch</option>
+          <option value="it_EU">Italiano</option>
+          <option value="nl_EU">Nederlands</option>
+          <option value="ru_EU">Pусский</option>
+          <option value="ja_JP" disabled>日本語</option>
+          <option value="zh_CN">中文（简体)</option>
+          <option value="ko_KR" disabled>한국어</option>
+          <option value="zh_TW" disabled>中文（繁體)</option>
         </select>
       </div>
     </div>

@@ -3,13 +3,25 @@ import { derived, writable } from 'svelte/store'
 import type { CardDetails } from '../card/interface'
 import { cards } from './cards'
 
-type SupportedLanguage = 'en_US' | 'es_EU' | 'es_US' | 'fr_EU' | 'fr_US'
+type SupportedLanguage =
+  | 'en_US'
+  | 'es_EU'
+  | 'es_US'
+  | 'fr_EU'
+  | 'fr_US'
+  | 'de_EU'
+  | 'nl_EU'
+  | 'it_EU'
+  | 'ru_EU'
+  | 'zh_CN'
 type LocalizedCardDetails = Pick<CardDetails, 'name' | 'nameParts' | 'headerScale'>
 
-const lang = writable<SupportedLanguage>('fr_US')
+const lang = writable<SupportedLanguage>('en_US')
 
 const initial_language = navigator.language
-if (['en-US', 'es-EU', 'es-US', 'fr-EU', 'fr-US'].includes(initial_language)) {
+if (
+  ['en-US', 'es-EU', 'es-US', 'fr-EU', 'fr-US', 'de-EU', 'nl-EU', 'it-EU', 'ru-EU', 'zh-CN'].includes(initial_language)
+) {
   lang.set(initial_language.replace('-', '_') as SupportedLanguage)
   // } else if (initial_language.startsWith('en')) {
   //   lang.set('en_US')

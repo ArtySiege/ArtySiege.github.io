@@ -15,6 +15,9 @@
   $: {
     setTimeout(() => calculateNameWidths($cards, $cardNames), 1000)
   }
+  // Get the key CommonMsg/MiniGame/MiniGameCardName from the full translation string file, assign it to variable cards
+  // Then transform into tab separated data
+  // Object.keys(cards).map(k => console.log(`${k}\t${cards[k].split('\n').join(' ')}\t${cards[k].split('\n').join('\t')}`))
 </script>
 
 <div>

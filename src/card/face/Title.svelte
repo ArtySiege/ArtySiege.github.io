@@ -40,7 +40,7 @@
     position: relative;
     font-size: calc(var(--gallery-scale) * 32px);
     /* color: #aa11ff; */
-    font-family: Splatoon1;
+    font-family: var(--splatoon1-font-family);
     transform: scale(var(--header-scale), 1);
     line-height: calc(var(--gallery-scale) * 38px);
   }
@@ -65,7 +65,7 @@
     position: absolute;
     font-size: calc(var(--gallery-scale) * 32px);
     /* color: #aa11ff; */
-    font-family: Splatoon1;
+    font-family: var(--splatoon1-font-family);
     letter-spacing: calc(var(--gallery-scale) * 1px);
     transform: scale(var(--header-scale), 1);
   }

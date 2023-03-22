@@ -26,20 +26,6 @@
       <p>It also contains some of the same sounds as “our TCG”, a reference to the acronym for “Trading Card Game”.</p>
     </div>
   </section>
-  <!-- <section class="print">
-    How to print:
-    <p>These cards are sized for printing on A4 or Letter sized pages, with no bleed.</p>
-    <h3>Scale</h3>
-    <p>
-      In the "More Settings" section of your browser print dialog, set the Scale to "100%" - you may need to pick
-      "Customized" first then set 100% as the scale.
-    </p>
-    <h3>Margins</h3>
-    <p>
-      If your browser has options to adjust margins, choose "Custom" margins and then adjust the top and left margins
-      until the cards are centered on the page.
-    </p>
-  </section> -->
 </about>
 
 <style>
@@ -85,12 +71,6 @@
     }
   }
 
-  @media screen {
-    .print {
-      display: none;
-    }
-  }
-
   @media print {
     about {
       background: none;
@@ -98,9 +78,6 @@
     }
     section {
       display: none;
-    }
-    section.print {
-      display: block;
     }
   }
 </style>

@@ -57,7 +57,9 @@
       <stop offset="95%" stop-color="#33ffcc" stop-opacity="1" />
     </linearGradient>
   {/if}
-  <g style="font-family: Splatoon1; font-size: 32px; letter-spacing: 0.5px; fill: url(#gradient-{card.number})">
+  <g
+    style="font-family: var(--splatoon1-font-family); font-size: 32px; letter-spacing: 0.5px; fill: url(#gradient-{card.number})"
+  >
     {#each localizedCard.nameParts as part, i}
       {@const y = i === 0 ? (localizedCard.nameParts.length === 1 ? 0.455 : 0.3) : 0.655}
       <text
