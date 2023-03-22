@@ -8,6 +8,15 @@ type LocalizedCardDetails = Pick<CardDetails, 'name' | 'nameParts' | 'headerScal
 
 const lang = writable<SupportedLanguage>('fr_US')
 
+const initial_language = navigator.language
+if (['en-US', 'es-EU', 'es-US', 'fr-EU', 'fr-US'].includes(initial_language)) {
+  lang.set(initial_language.replace('-', '_') as SupportedLanguage)
+  // } else if (initial_language.startsWith('en')) {
+  //   lang.set('en_US')
+} else {
+  lang.set('en_US')
+}
+
 const fetchData = async ($lang) => {
   let cardFetch = await fetch('/i18n/' + $lang + '.csv')
   let cardData = await cardFetch.text()

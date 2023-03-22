@@ -1,6 +1,7 @@
 <script lang="ts">
   import { init } from 'svelte/internal'
   import { cards, filteredCards } from '../stores/cards'
+  import { lang, cardNames } from '../stores/lang'
   import { printing } from '../stores/print'
   import { bleed } from '../stores/print'
   import Card from './Card.svelte'
@@ -66,7 +67,7 @@
       <select id="printSelection" multiple bind:value={printSelection}>
         {#each $cards as card}
           {#if card.img}
-            <option value={card.number}>{card.name}</option>
+            <option value={card.number}>{$cardNames[card.number].name}</option>
           {/if}
         {/each}
       </select>
@@ -84,7 +85,7 @@
           $bleed * 2}mm"
       >
         <div class="page">
-          <img class="print-card" alt="Test Card" src="/img/Print/en_US/_0_test.webp" />
+          <img class="print-card" alt="Test Card" src="/img/Print/{$lang}/_0_test.webp" />
           {#each Array(8) as _}
             <img class="print-card" alt="Test Card" src="/img/Print/_1_test.webp" />
           {/each}
@@ -121,9 +122,9 @@
             {#each group as card}
               <img
                 class="print-card"
-                alt="{card.name} by {card.artist}"
+                alt="{$cardNames[card.number].name} by {card.artist}"
                 loading="lazy"
-                src="/img/Print/en_US/{card.number.toString().padStart(3, '0')}.webp"
+                src="/img/Print/{$lang}/{card.number.toString().padStart(3, '0')}.webp"
               />
             {/each}
           </div>
