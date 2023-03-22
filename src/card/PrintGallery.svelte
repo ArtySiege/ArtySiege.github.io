@@ -42,6 +42,8 @@
 
   let printGroup: 'Test Page' | 'All' | 'Selection' = 'Test Page'
   let printSelection: Array<number> = []
+
+  $: printLang = $lang === 'zh_CN' ? 'en_US' : $lang
 </script>
 
 <main>
@@ -85,9 +87,9 @@
           $bleed * 2}mm"
       >
         <div class="page">
-          <img class="print-card" alt="Test Card" src="/img/Print/{$lang}/_0_test.webp" />
+          <img class="print-card" alt="Test Card" src="./img/Print/{printLang}/0_test.webp" />
           {#each Array(8) as _}
-            <img class="print-card" alt="Test Card" src="/img/Print/_1_test.webp" />
+            <img class="print-card" alt="Test Card" src="./img/Print/1_test.webp" />
           {/each}
         </div>
 
@@ -124,7 +126,7 @@
                 class="print-card"
                 alt="{$cardNames[card.number].name} by {card.artist}"
                 loading="lazy"
-                src="/img/Print/{$lang}/{card.number.toString().padStart(3, '0')}.webp"
+                src="/img/Print/{printLang}/{card.number.toString().padStart(3, '0')}.webp"
               />
             {/each}
           </div>
