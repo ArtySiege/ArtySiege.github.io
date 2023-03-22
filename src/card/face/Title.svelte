@@ -2,28 +2,38 @@
   import { onMount } from 'svelte'
   import { getCardContext } from '../getCardContext'
   import { styles } from '../../stores/style'
+  import { isSafari } from '../../stores/orientation'
+  import { cardNames } from '../../stores/lang'
+  import fragment from 'svelte-fragment'
   const card = getCardContext()
+  $: localizedCard = $cardNames[card.number]
 </script>
 
-<div
-  class="header-wrapper"
-  class:singleLine={card.nameParts.length === 1}
-  style="--header-scale: {Math.min(1, card.headerScale)}"
->
-  <svg width="100%" height="100%">
-    <g>
-      {#each card.nameParts as part, i}
-        {@const y = i === 0 ? (card.nameParts.length === 1 ? 0.455 : 0.3) : 0.7}
-        <text class="stroke-small" x="50%" y="{100 * y}%" dominant-baseline="central" text-anchor="middle">{part}</text>
-        <text class="stroke" x="50%" y="{100 * y}%" dominant-baseline="central" text-anchor="middle">{part}</text>
-      {/each}
-    </g>
-  </svg>
+<template use:fragment slot="content">
+  {#if localizedCard}
+    <div
+      class="header-wrapper"
+      class:singleLine={localizedCard.nameParts.length === 1}
+      style="--header-scale: {Math.min(1, localizedCard.headerScale)};--browserScale:{isSafari ? 1.1 : 1}"
+    >
+      <svg width="100%" height="100%">
+        <g>
+          {#each localizedCard.nameParts as part, i}
+            {@const y = i === 0 ? (localizedCard.nameParts.length === 1 ? 0.455 : 0.3) : 0.7}
+            <text class="stroke-small" x="50%" y="{100 * y}%" dominant-baseline="central" text-anchor="middle"
+              >{part}</text
+            >
+            <text class="stroke" x="50%" y="{100 * y}%" dominant-baseline="central" text-anchor="middle">{part}</text>
+          {/each}
+        </g>
+      </svg>
 
-  <header data-html2canvas-ignore>
-    <span class={card.rarity}>{@html card.nameParts.join('<br />')}</span>
-  </header>
-</div>
+      <header>
+        <span class={card.rarity}>{@html localizedCard.nameParts.join('<br />')}</span>
+      </header>
+    </div>
+  {/if}
+</template>
 
 <style>
   header {
@@ -65,7 +75,7 @@
     background-image: linear-gradient(#b4a6fe, #6600ff 50%, #3715aa);
     color: transparent;
     -webkit-text-fill-color: transparent;
-    letter-spacing: calc(var(--gallery-scale) * 1px);
+    letter-spacing: calc(var(--gallery-scale) * 1px * var(--browserScale));
   }
   span.fresh {
     background-image: repeating-linear-gradient(120deg, #ffff99, #f2707a, #cc3399, #84d4f2, #33ffcc, #ffff99 35%);

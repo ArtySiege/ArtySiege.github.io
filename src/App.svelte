@@ -8,13 +8,14 @@
   import Credits from './Credits.svelte'
   import Navigation from './Navigation.svelte'
   import { activeCard, activeCardNumber, cards } from './stores/cards'
+  import { galleryWidth } from './stores/interaction'
   import WhatsNext from './WhatsNext.svelte'
   const closeDetail = () => {
     activeCardNumber.set(undefined)
   }
 </script>
 
-<main>
+<main style="--gallery-width:{$galleryWidth}px">
   <Navigation />
   <About />
   <!-- <BoosterGroup /> -->
@@ -29,8 +30,8 @@
       <h3>{$activeCard.seriesNumber}/{$activeCard.seriesTotal}: {$activeCard.name} by {$activeCard.artist}</h3>
       <div>
         {#if $activeCard.artistAlias}
-          <span>
-            Also known as: {$activeCard.artistAlias}
+          <span class="alias">
+            {$activeCard.artistAlias}
           </span>
         {/if}
         {#each $activeCard.artistLinks as link, index}
@@ -53,6 +54,8 @@
   main {
     text-align: center;
     --padding: 10px;
+    font-size: 0.9rem;
+    line-height: 1.1;
   }
 
   detail {
@@ -63,13 +66,14 @@
     max-height: 80vh;
     color: white;
     background: rgba(0, 0, 0, 0.8);
-    padding: 0 calc(4 * var(--padding));
+    padding: 5px calc(4 * var(--padding));
     box-sizing: border-box;
   }
 
   detail h3 {
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 5px;
+    line-height: 1.1;
   }
   detail button {
     position: absolute;
@@ -79,6 +83,9 @@
     background: transparent;
     border: none;
     cursor: pointer;
+  }
+  .alias:before {
+    content: 'AKA: ';
   }
 
   detail .link-divider {
@@ -95,6 +102,11 @@
   @media (min-width: 640px) {
     main {
       max-width: none;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+    .alias:before {
+      content: 'Also known as: ';
     }
   }
 

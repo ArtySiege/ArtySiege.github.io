@@ -5,10 +5,10 @@
   import CardContext from './Context.svelte'
   import type { CardFeatureType } from './interface'
   import { activeCardNumber, cards, filteredCards, resetFilters, scrollToIndex } from '../stores/cards'
-  import { prefersReducedMotion } from '../stores/interaction'
+  import { prefersReducedMotion, galleryWidth } from '../stores/interaction'
   import GalleryFilters from '../GalleryFilters.svelte'
 
-  let gridWrapperWidth = 1
+  let gridWrapperWidth = window.innerWidth
   const cardWidth = (744 + 71) / 2
   const cardHeight = (1039 + 71) / 2
   let userScale = 1
@@ -38,7 +38,7 @@
 
   // Hide the card description when scrolling past the gallery
   const handleScroll = () => {
-    if ($activeCardNumber && window.scrollY > yCoordinate + gridWrapperHeight) {
+    if ($activeCardNumber && window.scrollY > yCoordinate + gridWrapperHeight - 150) {
       activeCardNumber.set(undefined)
     }
   }
@@ -48,8 +48,10 @@
 
 <main style="--gallery-scale: {scale * userScale}" bind:this={galleryRef}>
   {#await cards.init()}
-    <h2 id="gallery">Card Gallery</h2>
-    loading...
+    <nav>
+      <h2 id="gallery">Card Gallery</h2>
+      loading...
+    </nav>
   {:then}
     <nav>
       <h2 id="gallery">Card Gallery</h2>
@@ -66,12 +68,13 @@
     <div class="grid-wrapper" bind:clientWidth={gridWrapperWidth}>
       <div
         class="grid-wrapper-inner"
+        bind:clientWidth={$galleryWidth}
         style="--width: {cardWidth ? cardWidth * scale * userScale * gridFitColumns + 20 + 'px' : '100%'}"
       >
         {#key $filteredCards}
           <Grid
-            width={cardWidth ? cardWidth * scale * userScale * gridFitColumns + 20 + 'px' : '100%'}
-            height={gridWrapperHeight - 100}
+            width={String($galleryWidth)}
+            height={gridWrapperHeight - 150}
             itemWidth={cardWidth * scale * userScale}
             itemHeight={cardHeight * scale * userScale}
             itemCount={$filteredCards.length}
@@ -156,6 +159,17 @@
     clip-path: inset(17.75px round 20px);
   }
 
+  nav {
+    width: var(--gallery-width);
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  nav h2 {
+    margin: 5px 0;
+  }
   @media (min-width: 640px) {
     main {
       max-width: none;

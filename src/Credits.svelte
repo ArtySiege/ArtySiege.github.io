@@ -20,8 +20,8 @@
   <div class="contributors">
     {#each $uniqueArtists as artist}
       <span />
-      <span
-        >{artist.artist}
+      <span>{artist.artist} </span>
+      <span>
         {#each artist.cards as card}
           <button on:click={() => scrollToCard(card.number)}>
             {card.seriesNumber}
@@ -71,46 +71,46 @@
   }
   div.contributors {
     display: grid;
-    grid-template-columns: 1fr minmax(100px, 240px) minmax(60px, 100px) minmax(60px, 100px) minmax(60px, 100px) 1fr;
+    grid-template-columns:
+      1fr minmax(100px, 240px) minmax(60px, 100px) minmax(60px, 100px) minmax(60px, 100px) minmax(60px, 100px)
+      1fr;
     gap: 0 16px;
     align-items: center;
     line-height: 1.5;
     margin: 0 auto;
   }
-  .contributors span:nth-child(6n + 2) {
+  .contributors span:nth-child(7n + 2) {
     text-align: right;
   }
   button {
     display: flex-inline;
-    margin: 2px 5px;
     align-items: center;
-    padding: 0 2px;
+    padding: 0;
+    margin: 0;
     overflow: hidden;
+    background: transparent;
+    border: none;
+    color: var(--link-color);
+    cursor: pointer;
+    font-size: 0.9rem;
+    vertical-align: text-bottom;
+  }
+  button + button:before {
+    content: ', ';
+    color: black;
   }
   .button-season {
-    width: 1.2rem;
+    width: 1.1rem;
+  }
+
+  @media (max-width: 600px) {
+    button + button:before {
+      content: ' ';
+    }
   }
   @media print {
     main {
-      padding: 10mm;
-    }
-    button {
       display: none;
-    }
-    .link {
-      display: none;
-    }
-    div.contributors {
-      display: grid;
-      grid-template-columns: 1fr minmax(100px, 240px) 0 0 minmax(100px, 240px) 0 0 minmax(100px, 240px) 1fr;
-      line-height: 1;
-      grid-auto-rows: 2rem;
-    }
-    .contributors span:nth-child(18n + 8) {
-      text-align: center;
-    }
-    .contributors span:nth-child(18n + 14) {
-      text-align: left;
     }
   }
 </style>

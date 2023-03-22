@@ -99,14 +99,6 @@
 
   @media print {
     nav {
-      position: relative;
-    }
-    ul,
-    .showNav ul {
-      flex-direction: column;
-      display: none;
-    }
-    nav > div > button {
       display: none;
     }
   }

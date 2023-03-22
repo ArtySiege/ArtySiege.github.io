@@ -1,11 +1,17 @@
 <script lang="ts">
 </script>
 
-<main id="whats-next">
-  <h2>What's Next</h2>
+<main>
+  <h2 id="whats-next">What's Next</h2>
+  <p>The project will take a bit of a break, some small website updates might happen during that time.</p>
   <p>
-    We'll be taking an indefinite break, after which we hope to reopen artist applications with a focus on completing
-    the Salmonid and Octarian Army cards.
+    A print run is in continual consideration but is not anticipated to occur any time soon - we'd like to catch up more
+    to the in-game cards.
+  </p>
+  <p>
+    You can fill in this <a href="https://forms.gle/vi9CDbJXvrkTEmMRA" target="_blank" rel="noreferrer"
+      >Interest Check form</a
+    > to help us determine where we put our energy after returning from hiatus!
   </p>
   <h2 id="how-to-play">How To Play</h2>
   <p>
@@ -13,8 +19,24 @@
     since the game now offers multiplayer the focus of the project has pivoted away from making it a practical Print
     &amp; Play game.
   </p>
-  <p>Rulebook and play board printouts will be added at a later date!</p>
+  <p>We may add rulebook and play board print files at a later date.</p>
 </main>
 
 <style>
+  main {
+    margin-top: 10px;
+  }
+  h2 {
+    text-align: left;
+    margin: 5px auto;
+    width: var(--gallery-width);
+  }
+  #how-to-play {
+    text-align: right;
+  }
+  @media print {
+    main {
+      display: none;
+    }
+  }
 </style>

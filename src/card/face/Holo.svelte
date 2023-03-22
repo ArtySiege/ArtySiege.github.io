@@ -16,7 +16,6 @@ repeating-linear-gradient(
   rgb(216, 117, 255) calc(var(--space) * 6),
   rgb(255, 119, 115) calc(var(--space) * 7)
 );"
-  data-html2canvas-ignore
 />
 
 <style>

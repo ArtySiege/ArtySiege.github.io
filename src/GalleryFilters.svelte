@@ -4,6 +4,8 @@
   import { prefersReducedMotion, prefersReducedLighting } from './stores/interaction'
   export let userScale: number
   export let scrollToRandom: () => void
+  import fragment from 'svelte-fragment'
+  import { lang } from './stores/lang'
 
   let panelOpen = false
 
@@ -12,14 +14,14 @@
   }
 </script>
 
-<div class="filters">
+<template use:fragment slot="content">
   <div>
     <button on:click={scrollToRandom}> Jump to a random card! </button>
     <button on:click={() => (panelOpen = !panelOpen)}>Search, Filter and Display Options</button>
   </div>
 
   {#if panelOpen}
-    <div>
+    <div class="options">
       <div class="display-option-row">
         <label for="cardSearch">Search by card name</label>
         <input id="cardSearch" type="text" bind:value={$searchCard} />
@@ -36,8 +38,8 @@
         <option value="3">Fresh Season 2023</option>
       </select>
 
-      <label>Çard Type</label>
-      <div class="featureTypeSelect">
+      <label for="featureTypeSelect">Card Type</label>
+      <div id="featureTypeSelect" class="featureTypeSelect">
         <select bind:value={$displayFilter}>
           <option value="All">All</option>
           {#each FeatureTypeFilterOptions as featureType}
@@ -102,11 +104,25 @@
           bind:checked={$prefersReducedLighting}
         />
       </div>
+      <div class="display-option-row">
+        <label for="language">Language</label>
+
+        <select id="language" bind:value={$lang}>
+          <option value="en_US">English</option>
+          <option value="es_EU">Español</option>
+          <option value="es_US">Español (MX)</option>
+          <option value="fr_EU">Français</option>
+          <option value="fr_US">Français (CA)</option>
+        </select>
+      </div>
     </div>
   {/if}
-</div>
+</template>
 
 <style>
+  .options {
+    flex: 1 0 100%;
+  }
   .featureTypeButton {
     display: none;
     gap: 0 0.5rem;

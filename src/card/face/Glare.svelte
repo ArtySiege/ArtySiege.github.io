@@ -2,7 +2,7 @@
   export let rarity = 'common'
 </script>
 
-<div class="glare {rarity}" data-html2canvas-ignore />
+<div class="glare {rarity}" />
 
 <style>
   .glare {

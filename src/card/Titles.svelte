@@ -7,18 +7,18 @@
   import { prefersReducedMotion } from '../stores/interaction'
   import { cards } from '../stores/cards'
   import TitleSvg from './face/TitleSvg.svelte'
-  // import { calculateNameWidths } from '../stores/lang'
+  import { calculateNameWidths, cardNames } from '../stores/lang'
 
   const displayFilter = 'All'
   const search: string = ''
 
   $: {
-    setTimeout(() => calculateNameWidths($cards), 1000)
+    setTimeout(() => calculateNameWidths($cards, $cardNames), 1000)
   }
 </script>
 
 <div>
-  {#await cards.init()}
+  {#await cards.init() && cardNames}
     loading...
   {:then}
     {#each $cards as card}
@@ -28,3 +28,11 @@
     {/each}
   {/await}
 </div>
+
+<style>
+  @media print {
+    div {
+      display: none;
+    }
+  }
+</style>

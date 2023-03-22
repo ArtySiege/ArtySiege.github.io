@@ -124,14 +124,7 @@
     style="--mx:{mx}px; --my:{my}px; transform: rotateX({x}deg) rotateY({y}deg);--posx: {posx}%; --posy:{posy}%; --o: {o}"
     bind:this={tiltBox}
   >
-    <img
-      aria-hidden="true"
-      class="card_back"
-      src="./img/UI/CardBack.webp"
-      alt=""
-      data-html2canvas-ignore
-      loading="lazy"
-    />
+    <img aria-hidden="true" class="card_back" src="./img/UI/CardBack.webp" alt="" loading="lazy" />
     <div class="card_front">
       <div>
         <!-- loading=lazy must appear before src -->
@@ -141,7 +134,6 @@
           src={card_front_background}
           aria-hidden="true"
           alt=""
-          data-html2canvas-ignore
           on:load={imageLoader}
         />
       </div>
