@@ -83,7 +83,7 @@
           >
             <header slot="header">
               {#if $filteredCards.length === 0}
-                <p>No cards found</p>
+                <p>No cards found. Maybe we haven't yet illustrated what you're looking for.</p>
                 <button on:click={resetFilters}>Clear filters</button>
               {:else if $cardDescriptionEnabled}
                 <p>Click on a card for artist links and notes!</p>

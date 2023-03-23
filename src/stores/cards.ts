@@ -2,6 +2,7 @@ import { derived, Readable, writable } from 'svelte/store'
 import type { CardDetails, CardFeatureType } from '../card/interface'
 import Papa from 'papaparse'
 import type { Grid } from 'svelte-virtual'
+import { cardNames } from './lang'
 
 const createCardStore = () => {
   const { subscribe, set } = writable<Array<CardDetails>>([])
@@ -107,14 +108,14 @@ const displayFilter = writable<CardFeatureType | 'All'>('All')
 const season = writable<string>('')
 
 const filteredCards: Readable<Array<CardDetails>> = derived(
-  [cards, searchCard, search, displayFilter, season],
-  ([$cards, $searchCard, $search, $displayFilter, $season]) =>
+  [cards, searchCard, search, cardNames, displayFilter, season],
+  ([$cards, $searchCard, $search, $cardNames, $displayFilter, $season]) =>
     $cards.filter(
       (c) =>
         c.img &&
         ($season === '' || c.series === $season) &&
         ($displayFilter === 'All' || c.featureType === $displayFilter) &&
-        ($searchCard === '' || c.name.toLowerCase().includes($searchCard.toLowerCase())) &&
+        ($searchCard === '' || $cardNames[c.number].name.toLowerCase().includes($searchCard.toLowerCase())) &&
         ($search === '' ||
           c.artist.toLowerCase().includes($search.toLowerCase()) ||
           c.artistAlias.toLowerCase().includes($search.toLowerCase()))

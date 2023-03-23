@@ -1,0 +1,8 @@
+@container (min-width: 640px) {
+  .featureTypeButton {
+    display: flex;
+  }
+  .featureTypeSelect {
+    display: none;
+  }
+}
