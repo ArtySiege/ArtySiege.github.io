@@ -1,5 +1,6 @@
 <script lang="ts">
   import { init } from 'svelte/internal'
+  import Tooltip from '../lib/Tooltip.svelte'
   import { cards, filteredCards } from '../stores/cards'
   import { lang, cardNames } from '../stores/lang'
   import { printing } from '../stores/print'
@@ -7,28 +8,7 @@
   import Card from './Card.svelte'
   import CardContext from './Context.svelte'
   import type { CardDetails } from './interface'
-
-  window.addEventListener('beforeprint', (event) => {
-    printing.set(true)
-    window.dataLayer.push({
-      event: 'arty__print_dialog_opened',
-      bleed: $bleed,
-      printGroup,
-      printSelection,
-      selectionCount: printSelection.length,
-    })
-  })
-  const handlePrint = () => {
-    printing.set(true)
-    window.dataLayer.push({
-      event: 'arty__print_button_clicked',
-      bleed: $bleed,
-      printGroup,
-      printSelection,
-      selectionCount: printSelection.length,
-    })
-    setTimeout(window.print, 500)
-  }
+  import PrintSettings from './PrintSettings.svelte'
 
   let cardGroups: Array<Array<CardDetails>> = []
   $: {
@@ -42,43 +22,10 @@
 
   let printGroup: 'Test Page' | 'All' | 'Selection' = 'Test Page'
   let printSelection: Array<number> = []
-
-  $: printLang = $lang === 'zh_CN' ? 'en_US' : $lang
 </script>
 
 <main>
-  <h2 id="print">Print</h2>
-  <div class="print-settings">
-    <p>It's recommended to print a "Test Page" first to ensure your cards are printed at the right size.</p>
-    <label for="bleed">Include Bleed</label>
-    <select id="bleed" bind:value={$bleed}>
-      <option value={1}>Yes</option>
-      <option value={0}>No</option>
-    </select>
-    <p>
-      Bleed is an extended area of artwork around the cards that allows for a margin of error when cutting them to size.
-    </p>
-
-    <label for="printGroup">Cards to Print</label>
-    <select id="printGroup" bind:value={printGroup}>
-      <option value="Test Page">Test Page</option>
-      <option value="All">All Illustrated Cards</option>
-      <option value="Selection">Choose Cards</option>
-    </select>
-    {#if printGroup === 'Selection'}
-      <select id="printSelection" multiple bind:value={printSelection}>
-        {#each $cards as card}
-          {#if card.img}
-            <option value={card.number}>{$cardNames[card.number].name}</option>
-          {/if}
-        {/each}
-      </select>
-    {/if}
-
-    <div>
-      <button on:click={handlePrint}>Print</button>
-    </div>
-  </div>
+  <PrintSettings bind:printGroup bind:printSelection />
   {#if $printing}
     {#if printGroup === 'Test Page'}
       <div
@@ -87,7 +34,7 @@
           $bleed * 2}mm"
       >
         <div class="page">
-          <img class="print-card" alt="Test Card" src="./img/Print/{printLang}/0_test.webp" />
+          <img class="print-card" alt="Test Card" src="./img/Print/{$lang}/0_test.webp" />
           {#each Array(8) as _}
             <img class="print-card" alt="Test Card" src="./img/Print/1_test.webp" />
           {/each}
@@ -122,11 +69,11 @@
         >
           <div class="page">
             {#each group as card}
+              <!-- note: can't use loading=lazy here as safari won't load the image in the print dialog -->
               <img
                 class="print-card"
                 alt="{$cardNames[card.number].name} by {card.artist}"
-                loading="lazy"
-                src="/img/Print/{printLang}/{card.number.toString().padStart(3, '0')}.webp"
+                src="/img/Print/{$lang}/{card.number.toString().padStart(3, '0')}.webp"
               />
             {/each}
           </div>
@@ -161,16 +108,7 @@
     margin: auto;
     width: 100%;
   }
-  h2 {
-    text-align: right;
-    margin: 5px auto;
-    width: var(--gallery-width);
-  }
-  .print-settings {
-    background: repeating-linear-gradient(45deg, #606dbc22, #606dbc22 30px, #46529822 30px, #46529822 60px);
-    border-radius: 10px;
-    color: white;
-  }
+
   .wrapper {
     margin: auto;
     content: '';
@@ -183,6 +121,7 @@
     page-break-before: always;
     overflow: hidden;
   }
+
   .first {
     page-break-before: unset;
   }
@@ -372,7 +311,7 @@
   .page {
     display: grid;
     grid-template-columns: var(--cardWidth) var(--cardWidth) var(--cardWidth);
-    grid-auto-rows: var(--cardHeight);
+    grid-template-rows: var(--cardHeight) var(--cardHeight) var(--cardHeight);
     padding: 0 var(--marginHorizontal);
     margin: 3mm;
     position: relative;
@@ -394,10 +333,6 @@
     }
     :global(body) {
       background: transparent !important;
-    }
-    h2,
-    .print-settings {
-      display: none;
     }
   }
   @page {

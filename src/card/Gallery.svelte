@@ -5,7 +5,7 @@
   import CardContext from './Context.svelte'
   import type { CardFeatureType } from './interface'
   import { activeCardNumber, cards, filteredCards, resetFilters, scrollToIndex } from '../stores/cards'
-  import { prefersReducedMotion, galleryWidth } from '../stores/interaction'
+  import { prefersReducedMotion, galleryWidth, cardDescriptionEnabled } from '../stores/interaction'
   import GalleryFilters from '../GalleryFilters.svelte'
 
   let gridWrapperWidth = window.innerWidth
@@ -85,22 +85,14 @@
               {#if $filteredCards.length === 0}
                 <p>No cards found</p>
                 <button on:click={resetFilters}>Clear filters</button>
-              {:else}
+              {:else if $cardDescriptionEnabled}
                 <p>Click on a card for artist links and notes!</p>
               {/if}
             </header>
             <div slot="placeholder" let:style {style}>
               <img class="card_back" src="./img/UI/CardBack.webp" alt="" aria-hidden="true" />
             </div>
-            <CardContext
-              width={(744 + 71) / 2}
-              height={(1039 + 71) / 2}
-              units="px"
-              slot="item"
-              let:style
-              let:index
-              cardDetails={$filteredCards[index]}
-            >
+            <CardContext slot="item" let:style let:index cardDetails={$filteredCards[index]}>
               <Card {style} />
             </CardContext>
           </Grid>
@@ -131,7 +123,7 @@
     /* padding-left: calc(var(--padding) * var(--gallery-scale)) !important; */
   }
   .grid-wrapper-inner {
-    background: repeating-linear-gradient(45deg, #606dbc22, #606dbc22 30px, #46529822 30px, #46529822 60px);
+    background: #606dbc22; /*repeating-linear-gradient(45deg, #606dbc22, #606dbc22 30px, #46529822 30px, #46529822 60px);*/
     border-radius: 10px;
     width: var(--width);
     position: relative;

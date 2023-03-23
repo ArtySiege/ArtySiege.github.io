@@ -11,10 +11,6 @@
 
 <main id="credits">
   <h2>Credits</h2>
-  <h3>
-    All art remains property of the respective artists. Files on this site are provided for personal use only - do not
-    produce copies to sell.
-  </h3>
 
   <h3>Artists</h3>
   <div class="contributors">
@@ -68,6 +64,7 @@
   main {
     page-break-before: always;
     padding: 16px;
+    color: white;
   }
   div.contributors {
     display: grid;
@@ -104,8 +101,14 @@
   }
 
   @media (max-width: 600px) {
-    button + button:before {
-      content: ' ';
+    button {
+      display: none;
+    }
+    div.contributors {
+      gap: 0 8px;
+      grid-template-columns:
+        1fr minmax(100px, 240px) 0 minmax(60px, 100px) minmax(60px, 100px) minmax(60px, 100px)
+        1fr;
     }
   }
   @media print {

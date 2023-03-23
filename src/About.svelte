@@ -47,7 +47,7 @@
     padding: var(--padding);
     max-width: 300px;
     margin: var(--padding);
-    min-height: 160px;
+    min-height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;

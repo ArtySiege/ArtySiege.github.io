@@ -8,24 +8,33 @@
   import Credits from './Credits.svelte'
   import Navigation from './Navigation.svelte'
   import { activeCard, activeCardNumber, cards } from './stores/cards'
-  import { lang } from './stores/lang'
-  import { galleryWidth } from './stores/interaction'
+  import { lang, titleFontSize } from './stores/lang'
+  import { cardDescriptionEnabled, galleryWidth } from './stores/interaction'
   import WhatsNext from './WhatsNext.svelte'
+  import Footer from './Footer.svelte'
   const closeDetail = () => {
     activeCardNumber.set(undefined)
   }
 
-  let splatoon1Font = 'Splatoon1'
+  let splatoon1Font = 'Splatoon1, sans-serif'
+  document.body.style.setProperty('--splatoon1-font-family', splatoon1Font)
+
+  $: document.body.style.setProperty('--title-font-size', $titleFontSize.toString())
   $: {
-    if ($lang === 'zh_CN') {
-      splatoon1Font = 'Splatoon1, Splatoon1_zh_CN, DFPZongYiW9-GB'
+    if ($lang === 'ja_JP') {
+      splatoon1Font = "Splatoon1, 'Splatoon1_ja_JP', 'DFPZongYiW9-GB', sans-serif"
+    } else if ($lang === 'zh_CN') {
+      splatoon1Font = "Splatoon1, 'Splatoon1_zh_CN', 'DFPZongYiW9-GB', sans-serif"
+    } else if ($lang === 'zh_TW') {
+      splatoon1Font = "Splatoon1, 'Splatoon1_zh_TW', 'DFPZongYiW9-GB', sans-serif"
     } else {
-      splatoon1Font = 'Splatoon1'
+      splatoon1Font = 'Splatoon1, sans-serif'
     }
+    document.body.style.setProperty('--splatoon1-font-family', splatoon1Font)
   }
 </script>
 
-<main style="--gallery-width:{$galleryWidth}px;--splatoon1-font-family:{splatoon1Font}">
+<main style="--gallery-width:{$galleryWidth}px;">
   <Navigation />
   <About />
   <!-- <BoosterGroup /> -->
@@ -34,7 +43,8 @@
   <PrintGallery />
   <WhatsNext />
   <Credits />
-  {#if $activeCard}
+  <Footer />
+  {#if $activeCard && $cardDescriptionEnabled}
     <detail>
       <button on:click={closeDetail}>✕</button>
       <h3>{$activeCard.seriesNumber}/{$activeCard.seriesTotal}: {$activeCard.name} by {$activeCard.artist}</h3>
@@ -78,6 +88,7 @@
     background: rgba(0, 0, 0, 0.8);
     padding: 5px calc(4 * var(--padding));
     box-sizing: border-box;
+    z-index: 100;
   }
 
   detail h3 {

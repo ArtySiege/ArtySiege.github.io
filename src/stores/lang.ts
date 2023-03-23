@@ -1,5 +1,5 @@
 import Papa from 'papaparse'
-import { derived, writable } from 'svelte/store'
+import { derived, get, writable } from 'svelte/store'
 import type { CardDetails } from '../card/interface'
 import { cards } from './cards'
 
@@ -14,13 +14,30 @@ type SupportedLanguage =
   | 'it_EU'
   | 'ru_EU'
   | 'zh_CN'
+  | 'zh_TW'
+  | 'ja_JP'
+  | 'ko_KR'
 type LocalizedCardDetails = Pick<CardDetails, 'name' | 'nameParts' | 'headerScale'>
 
 const lang = writable<SupportedLanguage>('en_US')
 
 const initial_language = navigator.language
 if (
-  ['en-US', 'es-EU', 'es-US', 'fr-EU', 'fr-US', 'de-EU', 'nl-EU', 'it-EU', 'ru-EU', 'zh-CN'].includes(initial_language)
+  [
+    'en-US',
+    'es-EU',
+    'es-US',
+    'fr-EU',
+    'fr-US',
+    'de-EU',
+    'nl-EU',
+    'it-EU',
+    'ru-EU',
+    'zh-CN',
+    'zh-TW',
+    'ja-JP',
+    'ko-KR',
+  ].includes(initial_language)
 ) {
   lang.set(initial_language.replace('-', '_') as SupportedLanguage)
   // } else if (initial_language.startsWith('en')) {
@@ -64,7 +81,9 @@ const asyncDerivedStream = (stores, callback, initial_value = {}) => {
 
 let cardNames = asyncDerivedStream(lang, fetchData)
 const BOUNDING_WIDTH = 392 * 0.64
-const FONT_SIZE = 32
+const titleFontSize = derived(lang, ($lang) => {
+  return $lang === 'ko_KR' || $lang === 'zh_CN' || $lang === 'zh_TW' ? 42 : 32
+})
 const LETTER_SPACING = 0.5
 
 const calculateNameWidths = (cards, cardNames) => {
@@ -84,10 +103,10 @@ const calculateNameWidths = (cards, cardNames) => {
 
 function getTextWidth(text, canvas) {
   const context = canvas.getContext('2d')
-  context.font = '32px Splatoon1'
+  context.font = get(titleFontSize) + 'px Splatoon1'
   context.letterSpacing = '0.5px'
   const metrics = context.measureText(text)
   return metrics.width
 }
 
-export { calculateNameWidths, lang, cardNames }
+export { calculateNameWidths, lang, cardNames, titleFontSize }

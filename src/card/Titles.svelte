@@ -17,7 +17,7 @@
   }
   // Get the key CommonMsg/MiniGame/MiniGameCardName from the full translation string file, assign it to variable cards
   // Then transform into tab separated data
-  // Object.keys(cards).map(k => console.log(`${k}\t${cards[k].split('\n').join(' ')}\t${cards[k].split('\n').join('\t')}`))
+  // Object.keys(cards).map(k => console.log(`${k}\t${cards[k].split('\n').join(' ').replace('- ', '-')}\t${cards[k].split('\n').join('\t')}`))
 </script>
 
 <div>
@@ -25,7 +25,7 @@
     loading...
   {:then}
     {#each $cards as card}
-      <CardContext width={(744 + 71) / 2} height={(1039 + 71) / 2} cardDetails={card} units="px">
+      <CardContext cardDetails={card}>
         <TitleSvg />
       </CardContext>
     {/each}

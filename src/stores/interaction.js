@@ -4,3 +4,4 @@ export const prefersReducedMotion = writable(window.matchMedia('(prefers-reduced
 export const prefersReducedLighting = writable(window.matchMedia('(prefers-reduced-motion: reduce)').matches)
 
 export const galleryWidth = writable(window.innerWidth)
+export const cardDescriptionEnabled = writable(true)

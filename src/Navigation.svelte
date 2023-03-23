@@ -1,4 +1,5 @@
-<script>
+<script lang="ts">
+  import { lang } from './stores/lang'
   let showNav = false
 </script>
 
@@ -15,12 +16,27 @@
       <li><a href="#credits">Credits</a></li>
     </ul>
   </div>
+  <select id="language" bind:value={$lang}>
+    <option value="en_US">English</option>
+    <option value="es_EU">Español</option>
+    <option value="es_US">Español (MX)</option>
+    <option value="fr_EU">Français</option>
+    <option value="fr_US">Français (CA)</option>
+    <option value="de_EU">Deutsch</option>
+    <option value="it_EU">Italiano</option>
+    <option value="nl_EU">Nederlands</option>
+    <option value="ru_EU">Pусский</option>
+    <option value="ja_JP">日本語</option>
+    <option value="zh_CN">中文（简体)</option>
+    <option value="ko_KR">한국어</option>
+    <option value="zh_TW">中文（繁體)</option>
+  </select>
 </nav>
 
 <style>
   nav {
     padding: var(--padding) calc(var(--padding) * 2);
-    background: #130639;
+    background: var(--theme-background-accent);
     color: white;
     display: flex;
     justify-content: center;
@@ -29,6 +45,9 @@
     top: 0;
     z-index: 100;
     /* height: 60px; */
+  }
+  nav a {
+    color: white;
   }
   img {
     height: 60px;
@@ -54,9 +73,14 @@
     padding: 0;
     overflow: hidden;
     display: flex;
+    align-items: center;
   }
   li {
     margin: 0 calc(var(--padding) * 2);
+    height: fit-content;
+  }
+  ul select {
+    margin: 0;
   }
 
   @media (max-width: 780px) {

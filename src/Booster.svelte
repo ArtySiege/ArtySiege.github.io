@@ -79,12 +79,7 @@
       {#each boosterCards as cardNumber, i}
         <div class="hitbox" class:flip={flipped[i]}>
           <div class="flipper">
-            <CardContext
-              cardDetails={$cards[cardNumber - 1]}
-              width={(744 + 71) / 2}
-              height={(1039 + 71) / 2}
-              units="px"
-            >
+            <CardContext cardDetails={$cards[cardNumber - 1]}>
               <Card style="width:100%;height:100%" animate={true} />
             </CardContext>
           </div>

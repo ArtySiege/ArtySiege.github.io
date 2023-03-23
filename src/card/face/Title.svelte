@@ -38,7 +38,7 @@
 <style>
   header {
     position: relative;
-    font-size: calc(var(--gallery-scale) * 32px);
+    font-size: calc(var(--gallery-scale) * var(--title-font-size) * 1px);
     /* color: #aa11ff; */
     font-family: var(--splatoon1-font-family);
     transform: scale(var(--header-scale), 1);
@@ -63,7 +63,7 @@
   }
   svg {
     position: absolute;
-    font-size: calc(var(--gallery-scale) * 32px);
+    font-size: calc(var(--gallery-scale) * var(--title-font-size) * 1px);
     /* color: #aa11ff; */
     font-family: var(--splatoon1-font-family);
     letter-spacing: calc(var(--gallery-scale) * 1px);
