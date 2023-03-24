@@ -41,7 +41,14 @@
     }
   }
 
-  export let printGroup: 'Test Page' | 'All' | 'Selection'
+  const clipNumberCards = (e: InputEvent) => {
+    if (Number(e.currentTarget.value) < 1) {
+      numberBacks = 1
+    }
+  }
+
+  export let numberBacks: number
+  export let printGroup: 'Test Page' | 'All' | 'Selection' | 'Backs'
   export let printSelection
 </script>
 
@@ -74,6 +81,7 @@
       >
       <select id="printGroup" bind:value={printGroup}>
         <option value="Test Page">Test Page</option>
+        <option value="Backs">Card Backs</option>
         <option value="All">All Illustrated Cards</option>
         <option value="Selection">Choose Cards</option>
       </select>
@@ -89,6 +97,19 @@
           {/if}
         {/each}
       </select>
+    {/if}
+    {#if printGroup === 'Backs'}
+      <div class="option-wrapper">
+        <label for="numberBacks">Number of Card Backs </label>
+        <input
+          type="number"
+          min="1"
+          max={$cards.length}
+          step="1"
+          bind:value={numberBacks}
+          on:change={clipNumberCards}
+        />
+      </div>
     {/if}
     <div class="option-wrapper">
       <button on:click={handlePrint}>Print</button>
