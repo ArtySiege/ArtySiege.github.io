@@ -42,7 +42,7 @@
   <h3>Mods</h3>
   alalampone • Camo_Ink
 
-  <p>Thanks also to MidiMayo and kuro for assistance with project setup and artist panelling.</p>
+  <p>Thanks also to Midi Mayo and kuro for assistance with project setup and artist panelling.</p>
 
   <h3>Playtesters</h3>
   <div class="playtesters">
@@ -53,11 +53,30 @@
   </div>
 
   <h3>Code</h3>
-  <p>Website by Alecat. Built with Svelte.</p>
   <p>
-    Card effects based on <a href="https://poke-holo.simey.me/">poke-holo.simey.me</a> - code adapted from the
-    <a href="https://github.com/simeydotme/pokemon-cards-css">GitHub project</a>.
+    Card effects based on <a href="https://poke-holo.simey.me/" target="_blank" rel="noreferrer">poke-holo.simey.me</a>
+    - code adapted from the
+    <a href="https://github.com/simeydotme/pokemon-cards-css" target="_blank" rel="noreferrer">GitHub project</a>.
   </p>
+  <p>
+    Translation data from <a
+      href="https://github.com/Leanny/leanny.github.io/tree/master/splat3/data/language"
+      target="_blank"
+      rel="noreferrer"
+    >
+      leanny.github.io
+    </a>
+    by
+    <a href="https://twitter.com/LeanYoshi" target="_blank" rel="noreferrer">Lean</a>
+  </p>
+  <p>
+    Translation handling referenced from <a href="https://splatoon3.ink/" target="_blank" rel="noreferrer">
+      splatoon3.ink
+    </a>
+    by
+    <a href="https://mastodon.social/@mattisenhower" target="_blank" rel="noreferrer">Matt Isenhower</a>
+  </p>
+  <p>Website by Alecat. Built with Svelte.</p>
 </main>
 
 <style>

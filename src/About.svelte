@@ -30,8 +30,8 @@
 
 <style>
   about {
-    background-image: url('../img/Splash/Table02.webp');
-    background-position: bottom right;
+    background-image: url('../img/Site/HeaderImageSprawl.webp');
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     display: block;
@@ -42,8 +42,8 @@
   }
 
   .card {
-    color: black;
-    background: #fff8;
+    color: white;
+    background: #000a;
     padding: var(--padding);
     max-width: 300px;
     margin: var(--padding);

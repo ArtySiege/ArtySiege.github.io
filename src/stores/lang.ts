@@ -19,31 +19,40 @@ type SupportedLanguage =
   | 'ko_KR'
 type LocalizedCardDetails = Pick<CardDetails, 'name' | 'nameParts' | 'headerScale'>
 
+// Todo fix this and the typings?
+const SUPPORTED_LANGUAGES: Array<SupportedLanguage> = [
+  'en_US',
+  'es_EU',
+  'es_US',
+  'fr_EU',
+  'fr_US',
+  'de_EU',
+  'nl_EU',
+  'it_EU',
+  'ru_EU',
+  'zh_CN',
+  'zh_TW',
+  'ja_JP',
+  'ko_KR',
+]
 const lang = writable<SupportedLanguage>('en_US')
 
 const initial_language = navigator.language
-if (
-  [
-    'en-US',
-    'es-EU',
-    'es-US',
-    'fr-EU',
-    'fr-US',
-    'de-EU',
-    'nl-EU',
-    'it-EU',
-    'ru-EU',
-    'zh-CN',
-    'zh-TW',
-    'ja-JP',
-    'ko-KR',
-  ].includes(initial_language)
-) {
+if (SUPPORTED_LANGUAGES.map((l) => l.replace('_', '-')).includes(initial_language)) {
   lang.set(initial_language.replace('-', '_') as SupportedLanguage)
-  // } else if (initial_language.startsWith('en')) {
-  //   lang.set('en_US')
+} else if (initial_language === 'fr-CA') {
+  lang.set('fr_US')
+} else if (initial_language.startsWith('es')) {
+  if (initial_language === 'es' || initial_language === 'es-ES') {
+    lang.set('es_EU')
+  } else {
+    lang.set('es_US')
+  }
 } else {
-  lang.set('en_US')
+  // compare first two characters of initial_language against each first two characters of SUPPORTED_LANGUAGES
+  const initial_language_prefix = initial_language.substring(0, 2)
+  const language_match = SUPPORTED_LANGUAGES.find((l) => l.substring(0, 2) === initial_language_prefix)
+  lang.set(language_match ?? 'en_US')
 }
 
 const fetchData = async ($lang) => {
