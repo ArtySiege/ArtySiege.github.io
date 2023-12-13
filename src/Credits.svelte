@@ -21,7 +21,11 @@
         {#each artist.cards as card}
           <button on:click={() => scrollToCard(card.number)}>
             {card.seriesNumber}
-            <img class="button-season" src="./img/UI/Season_{card.series.padStart(2, '0')}.svg" />
+            <img
+              alt="Series {card.series}"
+              class="button-season"
+              src="./img/UI/Season_{card.series.padStart(2, '0')}.svg"
+            />
           </button>
         {/each}
       </span>

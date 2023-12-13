@@ -71,12 +71,17 @@ const orientation = readable(getOrientationObject(), (set) => {
   }
 })
 
+interface DeviceOrientationEventiOS extends DeviceOrientationEvent {
+  requestPermission?: () => Promise<'granted' | 'denied'>;
+}
+
 const requestPermission = () => {
   // console.log('requesting perms')
   if (!checkedPermission) {
-    if (typeof DeviceMotionEvent?.requestPermission === 'function') {
+    const requestPermission = (DeviceOrientationEvent as unknown as DeviceOrientationEventiOS).requestPermission;
+    if (typeof requestPermission === 'function') {
       checkedPermission = true
-      DeviceMotionEvent.requestPermission()
+      requestPermission()
         .then((response) => {
           if (response == 'granted') {
             hasPermission.set(true)

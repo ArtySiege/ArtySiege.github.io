@@ -79,9 +79,9 @@
     margin: 0 calc(var(--padding) * 2);
     height: fit-content;
   }
-  ul select {
+  /* ul select {
     margin: 0;
-  }
+  } */
 
   @media (max-width: 780px) {
     nav {

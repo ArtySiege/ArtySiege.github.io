@@ -71,8 +71,8 @@
           <input id="zoom" type="range" min=".25" max="1" bind:value={userScale} step="0.05" />
         </div>
         <div class="display-option-row">
-          <input id="disableMotion" type="checkbox" bind:checked={$cardDescriptionEnabled} />
-          <label for="disableMotion">Show card descriptions</label>
+          <input id="showDescriptions" type="checkbox" bind:checked={$cardDescriptionEnabled} />
+          <label for="showDescriptions">Show card descriptions</label>
         </div>
       </div>
       <div class="accessibility-group">

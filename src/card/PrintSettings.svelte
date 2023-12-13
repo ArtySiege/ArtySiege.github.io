@@ -147,25 +147,6 @@
     border-radius: 50%; */
     margin: 0 5px;
   }
-  .options-wrapper {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .options-left {
-    display: flex;
-    flex-direction: column;
-    flex: 1 2 auto;
-  }
-  .options-right {
-    flex: 2 0 auto;
-    max-width: 200px;
-    text-align: right;
-    display: flex;
-    /* align-items: flex-end; */
-    flex-direction: column;
-  }
   .option-wrapper {
     display: flex;
     align-items: center;

@@ -213,14 +213,4 @@
     left: calc(1.5mm);
     top: calc(var(--printBleed) * -2);
   }
-
-  .page {
-    display: grid;
-    grid-template-columns: var(--cardWidth) var(--cardWidth) var(--cardWidth);
-    grid-template-rows: var(--cardHeight) var(--cardHeight) var(--cardHeight);
-    padding: 0 var(--marginHorizontal);
-    margin: 3mm;
-    position: relative;
-    width: fit-content;
-  }
 </style>

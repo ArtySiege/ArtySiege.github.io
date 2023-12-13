@@ -1,7 +1,6 @@
 import Papa from 'papaparse'
 import { derived, get, writable } from 'svelte/store'
 import type { CardDetails } from '../card/interface'
-import { cards } from './cards'
 
 type SupportedLanguage =
   | 'en_US'
@@ -118,4 +117,4 @@ function getTextWidth(text, canvas) {
   return metrics.width
 }
 
-export { calculateNameWidths, lang, cardNames, titleFontSize }
+export { calculateNameWidths, lang, cardNames, titleFontSize, SUPPORTED_LANGUAGES }
