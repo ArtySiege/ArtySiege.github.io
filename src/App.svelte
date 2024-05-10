@@ -1,17 +1,14 @@
 <script lang="ts">
-  import { setContext } from 'svelte'
   import About from './About.svelte'
-  import BoosterGroup from './BoosterGroup.svelte'
+  import Credits from './Credits.svelte'
+  import Footer from './Footer.svelte'
+  import Navigation from './Navigation.svelte'
+  import WhatsNext from './WhatsNext.svelte'
   import Gallery from './card/Gallery.svelte'
   import PrintGallery from './card/PrintGallery.svelte'
-  import Titles from './card/Titles.svelte'
-  import Credits from './Credits.svelte'
-  import Navigation from './Navigation.svelte'
-  import { activeCard, activeCardNumber, cards } from './stores/cards'
-  import { lang, titleFontSize } from './stores/lang'
+  import { activeCard, activeCardNumber } from './stores/cards'
   import { cardDescriptionEnabled, galleryWidth } from './stores/interaction'
-  import WhatsNext from './WhatsNext.svelte'
-  import Footer from './Footer.svelte'
+  import { lang, titleFontSize } from './stores/lang'
   const closeDetail = () => {
     activeCardNumber.set(undefined)
   }
@@ -36,6 +33,11 @@
 
 <main style="--gallery-width:{$galleryWidth}px;">
   <Navigation />
+  <div class="alert-banner">
+    Welcome Low Tide City gamers! Thanks for checking out the project. We're considering a print run for delivery at
+    Riptide, so join our <a href="https://discord.gg/Be9XqKmVwf" target="_blank" rel="noreferrer">Discord Server</a> or
+    <a href="https://forms.gle/keK7rG84gPcT7qit9" target="_blank" rel="noreferrer">Mailing List</a> for updates!
+  </div>
   <About />
   <!-- <BoosterGroup /> -->
   <!-- <Titles /> -->
@@ -78,6 +80,13 @@
     line-height: 1.1;
   }
 
+  .alert-banner {
+    background-color: var(--theme-highlight);
+    padding: 1rem;
+  }
+  .alert-banner a {
+    color: var(--theme-background-accent);
+  }
   detail {
     position: fixed;
     bottom: 0;

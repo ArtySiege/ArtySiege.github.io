@@ -3,29 +3,52 @@
 </script>
 
 <about id="about">
-  <section>
-    <div class="card mini">
-      A unique Tableturf deck for you to print at home, currently featuring {$cards.filter((c) => !!c.img).length} cards
-      illustrated by {$uniqueArtists.length}
-      artists!
-    </div>
-  </section>
-  <section>
-    <div class="card">
-      <p>
-        <strong>arty</strong> <i>[ahr-tee]</i><br />
-        Inclined towards the arts
-      </p>
-      <p>
-        <strong>siege</strong> <i>[seej]</i><br />
-        A blockade or assault on a territory
-      </p>
-    </div>
-    <div class="card ">
-      <p>“Arty Siege” describes the gameplay of Tableturf - territory control using ink.</p>
-      <p>It also contains some of the same sounds as “our TCG”, a reference to the acronym for “Trading Card Game”.</p>
-    </div>
-  </section>
+  <column>
+    <section>
+      <div class="card mini">
+        A unique Tableturf deck for you to print at home, currently featuring {$cards.filter((c) => !!c.img).length} cards
+        illustrated by {$uniqueArtists.length}
+        artists!
+      </div>
+    </section>
+    <section>
+      <div class="card">
+        <p>
+          <strong>arty</strong> <i>[ahr-tee]</i><br />
+          Inclined towards the arts
+        </p>
+        <p>
+          <strong>siege</strong> <i>[seej]</i><br />
+          A blockade or assault on a territory
+        </p>
+      </div>
+      <div class="card">
+        <p>“Arty Siege” describes the gameplay of Tableturf - territory control using ink.</p>
+        <p>
+          It also contains some of the same sounds as “our TCG”, a reference to the acronym for “Trading Card Game”.
+        </p>
+      </div>
+    </section>
+  </column>
+  <column class="socials">
+    <section>
+      <div class="card">
+        <p>
+          <strong>Stay Updated!</strong>
+        </p>
+        <ul>
+          <li><a href="https://twitter.com/tableturfproj" target="_blank" rel="noreferrer">Twitter</a></li>
+          <li><a href="https://tableturfproj.tumblr.com" target="_blank" rel="noreferrer">Tumblr</a></li>
+          <li><a href="https://cohost.org/TableTurfProj" target="_blank" rel="noreferrer">Cohost</a></li>
+          <li><a href="https://discord.gg/Be9XqKmVwf" target="_blank" rel="noreferrer">Discord</a></li>
+        </ul>
+        <p>
+          Join the <a href="https://forms.gle/keK7rG84gPcT7qit9" target="_blank" rel="noreferrer">Mailing List</a> for email
+          updates.
+        </p>
+      </div>
+    </section>
+  </column>
 </about>
 
 <style>
@@ -34,11 +57,19 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    display: block;
+    display: flex;
+    justify-content: space-between;
   }
   strong {
     font-weight: bold;
     font-family: Splatoon1;
+  }
+  .socials {
+    text-align: right;
+  }
+  .socials ul {
+    list-style: none;
+    padding: 0;
   }
 
   .card {
@@ -66,8 +97,14 @@
   }
 
   @media (max-width: 780px) {
+    about {
+      flex-direction: column;
+    }
     section {
       flex-direction: column;
+    }
+    .socials {
+      text-align: center;
     }
   }
 

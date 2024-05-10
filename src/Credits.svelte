@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { filteredCards, uniqueArtists, scrollToIndex, activeCardNumber } from './stores/cards'
+  import { activeCardNumber, filteredCards, scrollToIndex, uniqueArtists } from './stores/cards'
   const scrollToCard = (cardNumber: number) => {
     $scrollToIndex($filteredCards.findIndex((c) => c.number === cardNumber))
     // navigate to the gallery anchor
@@ -55,6 +55,9 @@
     <span>SpongeBev</span> •
     <span>Palette</span>
   </div>
+
+  <h3>Low Tide City Tableturf Reps</h3>
+  BAE • Chino
 
   <h3>Code</h3>
   <p>

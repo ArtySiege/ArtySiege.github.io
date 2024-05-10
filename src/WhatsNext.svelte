@@ -3,18 +3,18 @@
 
 <main>
   <div class="whats-next-wrapper">
-    <h2 id="whats-next">What's Next</h2>
+    <h2 id="whats-next">Stay Updated</h2>
     <div class="whats-next">
       <p>The project will take a bit of a break, some small website updates might happen during that time.</p>
       <p>
-        A print run is in continual consideration but is not anticipated to occur any time soon - we'd like to catch up
-        more to the in-game cards.
+        A print run is in continual consideration. You can fill in this <a
+          href="https://forms.gle/vi9CDbJXvrkTEmMRA"
+          target="_blank"
+          rel="noreferrer">Interest Check form</a
+        >
+        to help us determine where we put our energy next!
       </p>
-      <p>
-        You can fill in this <a href="https://forms.gle/vi9CDbJXvrkTEmMRA" target="_blank" rel="noreferrer"
-          >Interest Check form</a
-        > to help us determine where we put our energy after returning from hiatus!
-      </p>
+      <p></p>
     </div>
   </div>
   <div class="how-to-play-wrapper">
