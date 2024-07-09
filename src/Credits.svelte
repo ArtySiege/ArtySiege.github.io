@@ -56,7 +56,7 @@
     <span>Palette</span>
   </div>
 
-  <h3>Low Tide City Tableturf Reps</h3>
+  <h3>LAN Tableturf Admins</h3>
   BAE • Chino
 
   <h3>Code</h3>

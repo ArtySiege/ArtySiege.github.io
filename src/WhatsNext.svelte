@@ -14,7 +14,6 @@
         >
         to help us determine where we put our energy next!
       </p>
-      <p></p>
     </div>
   </div>
   <div class="how-to-play-wrapper">
@@ -29,11 +28,16 @@
         Play game; we worried less about size and contrast on the cards in favour of allowing the artists to let their
         imaginations run wild with the card art.
       </p>
-      <p>Files to accompany these instructions will come at a later date.</p>
+      <p>
+        Meanwhile, <a href="https://mixam.com/embed/66187d80287a5445a991cc91">alternative rules</a> have been designed which
+        streamline gameplay in an IRL environment. These rules require updates to the card UI - currently exclusive to print
+        runs distributed at LAN events, thanks to the efforts of BAE and Chino.
+      </p>
+      <p>If you want an exact 1-1 gameplay experience, read on!</p>
       <p>These instructions will not explain the rules of Tableturf.</p>
       <p>You will need:</p>
       <ul>
-        <li>16 card decks for two players (you can print just the cards you need!)</li>
+        <li>15 card decks for two players (you can print just the cards you need!)</li>
         <li>Privacy screens to keep your moves hidden</li>
         <li>
           A private map for each player. To match the Arty Siege cards, make the grid lines 3mm / 1/8th inch apart
