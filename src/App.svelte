@@ -34,9 +34,14 @@
 <main style="--gallery-width:{$galleryWidth}px;">
   <Navigation />
   <div class="alert-banner">
-    Welcome Low Tide City gamers! Thanks for checking out the project. We're considering a print run for delivery at
-    Riptide, so join our <a href="https://discord.gg/Be9XqKmVwf" target="_blank" rel="noreferrer">Discord Server</a> or
-    <a href="https://forms.gle/keK7rG84gPcT7qit9" target="_blank" rel="noreferrer">Mailing List</a> for updates!
+    Thankyou for everyone at Riptide for your support! Together we raised $1233 for <a
+      href="https://www.weallcode.org/"
+      target="_blank"
+      rel="noreferrer">We All Code</a
+    >. We're now back in hiatus mode. For updates, join our
+    <a href="https://discord.gg/Be9XqKmVwf" target="_blank" rel="noreferrer">Discord Server</a>
+    or
+    <a href="https://forms.gle/keK7rG84gPcT7qit9" target="_blank" rel="noreferrer">Mailing List</a>.
   </div>
   <About />
   <!-- <BoosterGroup /> -->
@@ -142,6 +147,9 @@
 
   @media print {
     detail {
+      display: none;
+    }
+    .alert-banner {
       display: none;
     }
   }
